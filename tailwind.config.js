@@ -51,11 +51,20 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        main_primary:"#2F4E6E",
+        main_secondary:"#8BAFE3",
+        main_tertiary: "#B4CAEB",
+        main_extra:"#D5E2F5",
+        main_white: "#FAFAFA",
+      },
+      fontFamily:{
+        poppins: "Poppins",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        
       },
       keyframes: {
         "accordion-down": {
