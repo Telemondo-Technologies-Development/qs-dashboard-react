@@ -33,24 +33,22 @@ export default function Header() {
 
   const { date, time } = getCurrentDateTime();
   return (
-    <header className="bg-[#2F4E6E] text-white py-3 px-12">
+    <header className="w-screen bg-[#2F4E6E] text-white py-3 px-12">
       <div className="flex justify-between">
         <div className="flex ">
           <img
             src={KBQSLogo}
             alt="kbqs logo"
-            height={113}
-            width={113}
-            className=""
+            className="size-[60px] self-center"
           />
           <div className="self-center pl-5">
-            <h1 className="text-[48px] font-bold">KIOSK</h1>
-            <p className="text-[24px]">Queuing and Billing System</p>
+            <h1 className="text-2xl font-bold">KIOSK</h1>
+            <p className="text-base">Queuing and Billing System</p>
           </div>
         </div>
         <div className="self-center">
-          <h1 className="text-[24px] font-bold text-right">{date}</h1>
-          <p className="text-[24px] text-right ">{time}</p>
+          <h1 className="text-base font-bold text-right">{date}</h1>
+          <p className="text-base text-right ">{time}</p>
         </div>
       </div>
     </header>
