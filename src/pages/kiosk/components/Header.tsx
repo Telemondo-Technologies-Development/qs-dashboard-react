@@ -1,14 +1,14 @@
-import KBQSLogo from "/kiosk.png"
+import KBQSLogo from "/kiosk-logo.png"
 
 export default function Header() {
   return (
     <header className="bg-[#2F4E6E] text-white py-3 px-12">
       <div className="flex justify-between">
         <div className="flex ">
-          <img src={KBQSLogo} alt="kbqslogo" height={113} width={113} className=""/>
+          <img src={KBQSLogo} alt="kbqs logo" height={113} width={113} className=""/>
           <div className="self-center pl-5">
             <h1 className="text-[48px] font-bold">KIOSK</h1>
-            <p className="text-[24px] leading-">Queuing and Billing System</p>
+            <p className="text-[24px]">Queuing and Billing System</p>
           </div>
         </div>
         <div className="self-center">
