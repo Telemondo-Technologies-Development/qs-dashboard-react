@@ -5,8 +5,8 @@ import { useState } from "react";
 export default function KioskDashboard() {
   const [selectedButton, setSelectedbutton] = useState("");
   return (
-    <div className="flex flex-col flex-1 items-center justify-center  bg-white font-poppins text-main_primary">
-      <h1 className="font-bold text-5xl mb-3">Queue</h1>
+    <div className="flex flex-col items-center justify-center flex-1 bg-white font-poppins text-main_primary">
+      <h1 className="mb-3 text-5xl font-bold">Queue</h1>
       <p className="text-xl mb-11">
         Select one of the following to generate a QR queue ticket.
       </p>
@@ -23,7 +23,7 @@ export default function KioskDashboard() {
           <p className="text-lg">Accounts</p>
         </button>
         <button
-          className="flex justify-center flex-col items-center font-bold text-xl gap-5 "
+          className="flex flex-col items-center justify-center gap-5 text-xl font-bold "
           onClick={() => setSelectedbutton("Deposits and Withdrawals")}
         >
           <img
@@ -34,7 +34,7 @@ export default function KioskDashboard() {
           <p className="text-lg">Deposits and Withdrawals</p>
         </button>
         <button
-          className="flex justify-center flex-col items-center font-bold text-xl gap-5"
+          className="flex flex-col items-center justify-center gap-5 text-xl font-bold"
           onClick={() => setSelectedbutton("Loans and Mortgages")}
         >
           <img
@@ -45,7 +45,7 @@ export default function KioskDashboard() {
           <p className="text-lg">Loans and Mortgages</p>
         </button>
         <button
-          className="flex justify-center flex-col items-center font-bold text-xl gap-5"
+          className="flex flex-col items-center justify-center gap-5 text-xl font-bold"
           onClick={() => setSelectedbutton("Payements and Transfer")}
         >
           <img
@@ -69,7 +69,7 @@ export default function KioskDashboard() {
           <p className="text-lg">Customer Service</p>
         </button>
       </div>
-      <div className="flex gap-48 text-lg mt-16">
+      <div className="flex gap-48 mt-16 text-lg">
         <Link to="/">
           <Button className="w-64 h-16 text-lg bg-main_primary">
             Regular Citizen

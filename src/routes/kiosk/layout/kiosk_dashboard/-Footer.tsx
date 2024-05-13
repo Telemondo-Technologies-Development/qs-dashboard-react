@@ -4,7 +4,7 @@ import TelemondoLogo from "/telemondo-logo.png";
 export default function Footer() {
   return (
     <footer className="flex justify-center space-x-6 py-1 border-t-[1px] border-main_primary">
-      <p className="text-xs self-center">
+      <p className="self-center text-xs">
         Powered by Unicenter Communications and Telemondo
       </p>
       <div className="h-full w-[1px] bg-black" />
