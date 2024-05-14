@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
+import KioskDialog from "../kiosk_dialog/-KioskDialog";
 
 export default function KioskDashboard() {
   const [selectedButton, setSelectedbutton] = useState("");
@@ -70,11 +71,13 @@ export default function KioskDashboard() {
         </button>
       </div>
       <div className="flex gap-48 mt-16 text-lg">
-        <Link to="/">
+        {/* placeholder lang ni kay need og button pang open sa dialog */}
+        <KioskDialog/>
+        {/* <Link to="/">
           <Button className="w-64 h-16 text-lg bg-main_primary">
             Regular Citizen
           </Button>
-        </Link>
+        </Link> */}
         <Link to="/admin">
           <Button className="w-64 h-16 text-lg bg-main_primary">
             Senior Citizen / <br /> Pregnant / PWD
