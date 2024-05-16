@@ -51,7 +51,7 @@ export default function KioskDashboard() {
         <Button
           onClick={() => {
             resetVariant();
-            setSelectedDialogCounter(selectedCounter!.counterID)
+            setSelectedDialogCounter(selectedCounter!)
             setSelectedDialogTicket(1);
             setShowDialog();
           }}
@@ -63,7 +63,7 @@ export default function KioskDashboard() {
         <Button
           onClick={() => {
             resetVariant();
-            setSelectedDialogCounter(selectedCounter!.counterID)
+            setSelectedDialogCounter(selectedCounter!)
             setSelectedDialogTicket(2);
             setShowDialog();
           }}

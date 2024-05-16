@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import { Counter, Ticket } from "@/utils/types/kiosk_types";
-import { counterTypes, ticketTypes } from "@/utils/variables/kiosk_variables";
+import { ticketTypes } from "@/utils/variables/kiosk_variables";
 
 type DialogVariant = "confirmation" | "success" | "error";
 
@@ -11,7 +11,7 @@ type DialogStore = {
   setVariant: (selectedVariant: DialogVariant) => void;
   resetVariant: () => void;
   selectedCounter: Counter | undefined;
-  setSelectedCounter: (selectedCounterID: number) => void;
+  setSelectedCounter: (selectedCounter : Counter) => void;
   selectedTicket: Ticket | undefined;
   setSelectedTicket: (selectedTicketID: number) => void;
 };
@@ -23,13 +23,8 @@ export const useDialogStore = create<DialogStore>()((set) => ({
   setVariant: (selectedVariant) => set({ variant: selectedVariant }),
   resetVariant: () => set({ variant: "confirmation" }),
   selectedCounter: undefined,
-  setSelectedCounter: (selectedCounterID) =>
-    set({
-      selectedCounter: counterTypes.find((counter) => {
-        if (counter.counterID === selectedCounterID) return counter;
-      }),
-    }),
-  resetSelectedCounter: () => set({ selectedCounter: undefined }),
+  setSelectedCounter: (selectedCounter) =>
+    set({selectedCounter: selectedCounter}),
   selectedTicket: undefined,
   setSelectedTicket: (selectedTicketID) =>
     set({
@@ -37,5 +32,4 @@ export const useDialogStore = create<DialogStore>()((set) => ({
         if (ticket.ticketID === selectedTicketID) return ticket;
       }),
     }),
-  resetSelectedTicket: () => set({ selectedTicket: undefined }),
 }));
