@@ -1,12 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { useDialogStore } from "../../state_management/-DialogStates";
+import { useDialogStore } from "../../state_management/-dialog_states";
 
 type DialogButtonsProps = {
   variant: string;
 };
 
 export default function DialogButtons({ variant }: DialogButtonsProps) {
-  const dialogbutton = useDialogStore((state) => state.toggleShow);
+  const toggleShowDialog = useDialogStore((state) => state.toggleShowDialog);
   const setVariant = useDialogStore((state) => state.setVariant);
 
   return (
@@ -14,7 +14,7 @@ export default function DialogButtons({ variant }: DialogButtonsProps) {
       {variant === "confirmation" ? (
         <>
           <Button
-            onClick={dialogbutton}
+            onClick={toggleShowDialog}
             className="w-48 text-base rounded-sm lg:text-lg lg:w-52 py-7 bg-main_secondary text-main_primary hover:bg-main_secondary"
           >
             Cancel
@@ -30,7 +30,7 @@ export default function DialogButtons({ variant }: DialogButtonsProps) {
         <>
           <Button
             onClick={() => {
-              dialogbutton();
+              toggleShowDialog();
             }}
             className="w-48 text-base text-white rounded-sm lg:text-lg lg:w-52 py-7 bg-main_primary hover:bg-main_primary"
           >
@@ -39,7 +39,7 @@ export default function DialogButtons({ variant }: DialogButtonsProps) {
         </>
       ) : (
         <Button
-          onClick={dialogbutton}
+          onClick={toggleShowDialog}
           className="w-48 text-base text-white rounded-sm lg:text-lg lg:w-52 py-7 bg-main_primary hover:bg-main_primary"
         >
           Try Again

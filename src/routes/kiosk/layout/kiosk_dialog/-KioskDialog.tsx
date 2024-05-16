@@ -2,14 +2,14 @@ import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
 import DialogButtons from "./-DialogButtons";
 import DialogContent from "./-DialogContent";
 import DialogHeader from "./-DialogHeader";
-import { useDialogStore } from "../../state_management/-DialogStates";
+import { useDialogStore } from "../../state_management/-dialog_states";
 
 export default function KioskDialog() {
-  const dialogstate = useDialogStore((state) => state.isOpen);
+  const isOpen = useDialogStore((state) => state.isOpen);
   const variant = useDialogStore((state) => state.variant);
 
   return (
-    <AlertDialog open={dialogstate}>
+    <AlertDialog open={isOpen}>
       <AlertDialogContent className={`w-fit overflow-hidden`}>
         <div className="flex flex-col items-center justify-center font-poppins">
           <div

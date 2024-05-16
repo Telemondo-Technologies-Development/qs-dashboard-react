@@ -1,36 +1,21 @@
 import { Button } from "@/components/ui/button";
-import { useEffect } from "react";
-import {
-  useSelectedCounterStore,
-  counterTypes,
-} from "../../state_management/-CounterType";
-import { useDialogStore } from "../../state_management/-DialogStates";
-import { useSelectedTicketStore } from "../../state_management/-TicketType";
+import { useEffect, useState } from "react";
+import { useDialogStore } from "../../state_management/-dialog_states";
+import { Counter } from "@/utils/types/kiosk_types";
+import { counterTypes } from "@/utils/variables/kiosk_variables";
 
 export default function KioskDashboard() {
-  const selectedCounter = useSelectedCounterStore(
-    (state) => state.selectedCounter
-  );
-  const setSelectedCounterType = useSelectedCounterStore(
-    (state) => state.setSelectedCounter
-  );
-  const resetSelectedCounter = useSelectedCounterStore(
-    (state) => state.resetSelectedCounter
-  );
+  
+  const [selectedCounter, setSelectedCounter] = useState<Counter | undefined>(undefined)
 
-  const setTicketType = useSelectedTicketStore((state)=> state.setSelectedTicket)
-
-  const setShowDialog = useDialogStore((state) => state.toggleShow);
-  const isOpen = useDialogStore((state) => state.isOpen);
+  const setShowDialog = useDialogStore((state) => state.toggleShowDialog);
   const resetVariant = useDialogStore((state) => state.resetVariant);
+  const setSelectedDialogCounter = useDialogStore((state) => state.setSelectedCounter)
+  const setSelectedDialogTicket = useDialogStore((state) => state.setSelectedTicket)
 
   useEffect(() => {
     console.log(selectedCounter);
   }, [selectedCounter]);
-
-  useEffect(() => {
-    console.log(isOpen);
-  }, [isOpen]);
 
   return (
     <div className="flex flex-col items-center justify-center flex-1 bg-white font-poppins text-main_primary">
@@ -45,15 +30,15 @@ export default function KioskDashboard() {
               key={counterType.counterID}
               className={`flex justify-center flex-col items-center font-bold text-xl gap-4 `}
               onClick={() => {
-                if (selectedCounter.counterID === counterType.counterID) {
-                  resetSelectedCounter();
+                if (selectedCounter?.counterID === counterType.counterID) {
+                  setSelectedCounter(undefined)
                 } else {
-                  setSelectedCounterType(counterType.counterID);
+                  setSelectedCounter(counterType)
                 }
               }}
             >
               <img
-                className={`size-56 ${!selectedCounter.counterID ? "brightness-100" : `${selectedCounter.counterID === counterType.counterID ? "brightness-100 border-4 border-main_primary rounded-2xl " : "brightness-50 transition duration-300"}`} `}
+                className={`size-56 ${!selectedCounter ? "brightness-100" : `${selectedCounter.counterID === counterType.counterID ? "brightness-100 border-4 border-main_primary rounded-2xl " : "brightness-50 transition duration-300"}`} `}
                 src={counterType.counterImage}
                 alt={counterType.counterName}
               />
@@ -66,8 +51,9 @@ export default function KioskDashboard() {
         <Button
           onClick={() => {
             resetVariant();
+            setSelectedDialogCounter(selectedCounter!.counterID)
+            setSelectedDialogTicket(1);
             setShowDialog();
-            setTicketType(1);
           }}
           className="w-64 h-16 text-lg bg-main_primary"
         >
@@ -77,8 +63,9 @@ export default function KioskDashboard() {
         <Button
           onClick={() => {
             resetVariant();
+            setSelectedDialogCounter(selectedCounter!.counterID)
+            setSelectedDialogTicket(2);
             setShowDialog();
-            setTicketType(2);
           }}
           className="w-64 h-16 text-lg bg-main_primary"
         >
