@@ -1,14 +1,13 @@
-import { useSelectedCounterStore } from "../../state_management/-CounterType";
-import { useSelectedTicketStore } from "../../state_management/-TicketType";
+import { useDialogStore } from "../../state_management/-dialog_states";
 
 type DialogContentProps = {
   variant: string;
 };
 export default function DialogContent({ variant }: DialogContentProps) {
-  const selectedCounter = useSelectedCounterStore(
+  const selectedCounter = useDialogStore(
     (state) => state.selectedCounter
   );
-  const selectedTicket = useSelectedTicketStore(
+  const selectedTicket = useDialogStore(
     (state) => state.selectedTicket
   );
   const eta = "30";
@@ -25,14 +24,14 @@ export default function DialogContent({ variant }: DialogContentProps) {
             <div className="flex flex-col flex-1 ">
               <p>Chosen Category</p>
               <p className="my-auto text-base font-bold text-black whitespace-pre md:text-lg lg:text-xl">
-                {selectedCounter.counterName?.replace(/\s+/g, "\n")}
+                {selectedCounter!.counterName?.replace(/\s+/g, "\n")}
               </p>
             </div>
             <div className="h-full w-[1px] bg-main_primary"></div>
             <div className="flex flex-col flex-1">
               <p>Ticket Type</p>
               <p className="my-auto text-base font-bold text-black whitespace-pre md:text-lg lg:text-xl">
-                {selectedTicket.ticketName}
+                {selectedTicket!.ticketName}
               </p>
             </div>
             <div className="h-full w-[1px] bg-main_primary"></div>
