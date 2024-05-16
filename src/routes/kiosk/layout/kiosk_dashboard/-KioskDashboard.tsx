@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "@tanstack/react-router";
 import { useEffect } from "react";
-import KioskDialog from "../kiosk_dialog/-KioskDialog";
 import {
   useSelectedCounterStore,
   counterTypes,
 } from "../../state_management/-CounterType";
+import { useDialogStore } from "../../state_management/-DialogStates";
 
 export default function KioskDashboard() {
   const selectedCounter = useSelectedCounterStore(
@@ -18,9 +18,17 @@ export default function KioskDashboard() {
     (state) => state.resetSelectedCounter
   );
 
+  const setShowDialog = useDialogStore((state) => state.toggleShow);
+  const isOpen = useDialogStore((state) => state.isOpen);
+  const resetVariant = useDialogStore((state) => state.resetVariant);
+
   useEffect(() => {
     console.log(selectedCounter);
   }, [selectedCounter]);
+
+  useEffect(() => {
+    console.log(isOpen);
+  }, [isOpen]);
 
   return (
     <div className="flex flex-col items-center justify-center flex-1 bg-white font-poppins text-main_primary">
@@ -53,18 +61,25 @@ export default function KioskDashboard() {
         })}
       </div>
       <div className="flex gap-48 mt-16 text-lg">
-        {/* placeholder lang ni kay need og button pang open sa dialog */}
-        <KioskDialog />
-        {/* <Link to="/">
-          <Button className="w-64 h-16 text-lg bg-main_primary">
-            Regular Citizen
-          </Button>
-        </Link> */}
-        <Link to="/admin">
-          <Button className="w-64 h-16 text-lg bg-main_primary">
-            Senior Citizen / <br /> Pregnant / PWD
-          </Button>
-        </Link>
+        <Button
+          onClick={() => {
+            resetVariant();
+            setShowDialog();
+          }}
+          className="w-64 h-16 text-lg bg-main_primary"
+        >
+          Regular Citizen
+        </Button>
+
+        <Button
+          onClick={() => {
+            resetVariant();
+            setShowDialog();
+          }}
+          className="w-64 h-16 text-lg bg-main_primary"
+        >
+          Senior Citizen / <br /> Pregnant / PWD
+        </Button>
       </div>
     </div>
   );
