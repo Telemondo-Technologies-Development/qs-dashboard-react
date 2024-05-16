@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import {
   useSelectedCounterStore,
   counterTypes,
 } from "../../state_management/-CounterType";
 import { useDialogStore } from "../../state_management/-DialogStates";
+import { useSelectedTicketStore } from "../../state_management/-TicketType";
 
 export default function KioskDashboard() {
   const selectedCounter = useSelectedCounterStore(
@@ -17,6 +17,8 @@ export default function KioskDashboard() {
   const resetSelectedCounter = useSelectedCounterStore(
     (state) => state.resetSelectedCounter
   );
+
+  const setTicketType = useSelectedTicketStore((state)=> state.setSelectedTicket)
 
   const setShowDialog = useDialogStore((state) => state.toggleShow);
   const isOpen = useDialogStore((state) => state.isOpen);
@@ -65,6 +67,7 @@ export default function KioskDashboard() {
           onClick={() => {
             resetVariant();
             setShowDialog();
+            setTicketType(1);
           }}
           className="w-64 h-16 text-lg bg-main_primary"
         >
@@ -75,6 +78,7 @@ export default function KioskDashboard() {
           onClick={() => {
             resetVariant();
             setShowDialog();
+            setTicketType(2);
           }}
           className="w-64 h-16 text-lg bg-main_primary"
         >
