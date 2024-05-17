@@ -4,7 +4,7 @@ import KioskDashboard from './layout/kiosk_dashboard/-KioskDashboard';
 import Footer from './layout/kiosk_dashboard/-Footer';
 import KioskDialog from './layout/kiosk_dialog/-KioskDialog';
 
-export const Route = createFileRoute('/kiosk')({
+export const Route = createFileRoute('/kiosk/')({
   component: () => <Kiosk/>
 })
 
