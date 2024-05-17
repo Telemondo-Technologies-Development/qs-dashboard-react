@@ -1,8 +1,6 @@
 import { create } from "zustand";
-import { Counter, Ticket } from "@/utils/types/kiosk_types";
+import { Counter, Ticket, DialogVariant } from "@/utils/types/kiosk_types";
 import { ticketTypes } from "@/utils/variables/kiosk_variables";
-
-type DialogVariant = "confirmation" | "success" | "error";
 
 type DialogStore = {
   isOpen: boolean;
