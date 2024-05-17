@@ -13,24 +13,24 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as KioskRouteImport } from './routes/kiosk/route'
 import { Route as IndexImport } from './routes/index'
 
 // Create Virtual Routes
 
-const KioskRouteLazyImport = createFileRoute('/kiosk')()
 const AdminRouteLazyImport = createFileRoute('/admin')()
 
 // Create/Update Routes
-
-const KioskRouteLazyRoute = KioskRouteLazyImport.update({
-  path: '/kiosk',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/kiosk/route.lazy').then((d) => d.Route))
 
 const AdminRouteLazyRoute = AdminRouteLazyImport.update({
   path: '/admin',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/admin/route.lazy').then((d) => d.Route))
+
+const KioskRouteRoute = KioskRouteImport.update({
+  path: '/kiosk',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
@@ -45,12 +45,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/admin': {
-      preLoaderRoute: typeof AdminRouteLazyImport
+    '/kiosk': {
+      preLoaderRoute: typeof KioskRouteImport
       parentRoute: typeof rootRoute
     }
-    '/kiosk': {
-      preLoaderRoute: typeof KioskRouteLazyImport
+    '/admin': {
+      preLoaderRoute: typeof AdminRouteLazyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -60,8 +60,8 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
+  KioskRouteRoute,
   AdminRouteLazyRoute,
-  KioskRouteLazyRoute,
 ])
 
 /* prettier-ignore-end */
