@@ -13,10 +13,6 @@ export default function KioskDashboard() {
   const setSelectedDialogCounter = useDialogStore((state) => state.setSelectedCounter)
   const setSelectedDialogTicket = useDialogStore((state) => state.setSelectedTicket)
 
-  useEffect(() => {
-    console.log(selectedCounter);
-  }, [selectedCounter]);
-
   return (
     <div className="flex flex-col items-center justify-center flex-1 bg-white font-poppins text-main_primary">
       <h1 className="mb-3 text-5xl font-bold">Queue</h1>
