@@ -11,7 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as KioskLayoutImport } from './routes/_kiosk-layout'
+import { Route as KioskLayoutRouteImport } from './routes/_kiosk-layout/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as KioskLayoutKioskIndexImport } from './routes/_kiosk-layout/kiosk/index'
@@ -19,7 +19,7 @@ import { Route as KioskLayoutKioskPagesNowServingRouteImport } from './routes/_k
 
 // Create/Update Routes
 
-const KioskLayoutRoute = KioskLayoutImport.update({
+const KioskLayoutRouteRoute = KioskLayoutRouteImport.update({
   id: '/_kiosk-layout',
   getParentRoute: () => rootRoute,
 } as any)
@@ -36,13 +36,13 @@ const AdminIndexRoute = AdminIndexImport.update({
 
 const KioskLayoutKioskIndexRoute = KioskLayoutKioskIndexImport.update({
   path: '/kiosk/',
-  getParentRoute: () => KioskLayoutRoute,
+  getParentRoute: () => KioskLayoutRouteRoute,
 } as any)
 
 const KioskLayoutKioskPagesNowServingRouteRoute =
   KioskLayoutKioskPagesNowServingRouteImport.update({
     path: '/kiosk/now-serving',
-    getParentRoute: () => KioskLayoutRoute,
+    getParentRoute: () => KioskLayoutRouteRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -54,7 +54,7 @@ declare module '@tanstack/react-router' {
       parentRoute: typeof rootRoute
     }
     '/_kiosk-layout': {
-      preLoaderRoute: typeof KioskLayoutImport
+      preLoaderRoute: typeof KioskLayoutRouteImport
       parentRoute: typeof rootRoute
     }
     '/admin/': {
@@ -63,11 +63,11 @@ declare module '@tanstack/react-router' {
     }
     '/_kiosk-layout/kiosk/': {
       preLoaderRoute: typeof KioskLayoutKioskIndexImport
-      parentRoute: typeof KioskLayoutImport
+      parentRoute: typeof KioskLayoutRouteImport
     }
     '/_kiosk-layout/kiosk/_pages/now-serving': {
       preLoaderRoute: typeof KioskLayoutKioskPagesNowServingRouteImport
-      parentRoute: typeof KioskLayoutImport
+      parentRoute: typeof KioskLayoutRouteImport
     }
   }
 }
@@ -76,7 +76,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  KioskLayoutRoute.addChildren([
+  KioskLayoutRouteRoute.addChildren([
     KioskLayoutKioskIndexRoute,
     KioskLayoutKioskPagesNowServingRouteRoute,
   ]),
