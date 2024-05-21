@@ -13,7 +13,9 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
+        
         "2xl": "1400px",
+
       },
     },
     extend: {
@@ -80,6 +82,11 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      screens:{
+        "mobile-s": "320px",
+        "mobile-m": "375px",
+        "mobile-l": "425px",
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],tailwindcss: {},
