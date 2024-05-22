@@ -1,4 +1,5 @@
-import { useDialogStore } from "../../state_management/-dialog_states";
+import { useDialogStore } from "@/stores/kiosk/dialog_states";
+
 
 type DialogContentProps = {
   variant: string;

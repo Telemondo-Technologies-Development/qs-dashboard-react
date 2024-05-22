@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { useDialogStore } from "../../state_management/-dialog_states";
+import { useDialogStore } from "@/stores/kiosk/dialog_states";
 import { Counter } from "@/utils/types/kiosk_types";
 import { counterTypes } from "@/utils/variables/kiosk_variables";
 
@@ -24,13 +24,13 @@ export default function KioskDashboard() {
 
   return (
     <div className="flex flex-col items-center justify-center flex-1 bg-white font-poppins text-main_primary mobile-s:mx-5">
-      <h1 className="font-bold mobile-s:text-2xl mobile-s:mt-10 mobile-s:mb-2 sm:mt-7 sm:mb-2 sm:text-2xl md:text-4xl  lg:mt-10 lg:mb-4 xl:3xl">
+      <h1 className="font-bold mobile-s:text-2xl mobile-s:mt-10 mobile-s:mb-2 sm:mt-7 sm:mb-2 sm:text-2xl md:text-4xl lg:mt-10 lg:mb-4 xl:3xl">
         Queue
       </h1>
-      <p className=" mobile-s:text-sm mobile-s:text-center mobile-s:mb-5 sm:text-sm sm:mb-5  md:mb-9 md:text-lg lg:text-base">
+      <p className=" mobile-s:text-sm mobile-s:text-center mobile-s:mb-5 sm:text-sm sm:mb-5 md:mb-9 md:text-lg lg:text-base">
         Select one of the following to generate a QR queue ticket.
       </p>
-      <div className="flex justify-center flex-wrap flex-row  mobile-s:gap-5  sm:gap-5  sm:mx-6 md:mx-10 lg:mx-2">
+      <div className="flex flex-row flex-wrap justify-center mobile-s:gap-5 sm:gap-5 sm:mx-6 md:mx-10 lg:mx-2">
         {counterTypes.map((counterType) => {
           return (
             <button
@@ -50,7 +50,7 @@ export default function KioskDashboard() {
                 alt={counterType.counterName}
               />
               <div>
-                <p className="mobile-s:text-sm  sm:text-xs  md:text-sm lg:text-sm xl:text-base">
+                <p className="mobile-s:text-sm sm:text-xs md:text-sm lg:text-sm xl:text-base">
                   {counterType.counterName}
                 </p>
               </div>
@@ -81,7 +81,7 @@ export default function KioskDashboard() {
             setSelectedDialogTicket(2);
             setShowDialog();
           }}
-          className="mobile-s:w-28 mobile-s:text-xs  sm:w-36 sm:h-10 sm:text-xs md:w-52 md:text-base md:h-14 lg:text-sm lg:w-52 bg-main_primary"
+          className="mobile-s:w-28 mobile-s:text-xs sm:w-36 sm:h-10 sm:text-xs md:w-52 md:text-base md:h-14 lg:text-sm lg:w-52 bg-main_primary"
         >
           Senior Citizen / <br /> Pregnant / PWD
         </Button>

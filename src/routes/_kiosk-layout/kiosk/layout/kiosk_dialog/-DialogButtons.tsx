@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useDialogStore } from "../../state_management/-dialog_states";
+import { useDialogStore } from "@/stores/kiosk/dialog_states";
 
 type DialogButtonsProps = {
   variant: string;
