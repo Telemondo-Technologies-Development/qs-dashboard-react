@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { useDialogStore } from "@/stores/kiosk/dialog_states";
 
 type DialogButtonsProps = {
@@ -10,40 +9,40 @@ export default function DialogButtons({ variant }: DialogButtonsProps) {
   const setVariant = useDialogStore((state) => state.setVariant);
 
   return (
-    <div className="flex justify-center w-full gap-20 py-6 bg-gray-200">
+    <div className="flex flex-col-reverse items-center justify-center w-full gap-2 px-4 py-4 bg-gray-200 sm:gap-12 sm:flex-row">
       {variant === "confirmation" ? (
         <>
-          <Button
+          <button
             onClick={toggleShowDialog}
-            className="w-48 text-base rounded-sm lg:text-lg lg:w-52 py-7 bg-main_secondary text-main_primary hover:bg-main_secondary"
+            className="w-full py-2 text-base rounded-sm sm:w-40 sm:py-3 lg:py-4 bg-main_secondary text-main_primary hover:bg-main_secondary"
           >
             Cancel
-          </Button>
-          <Button
-            onClick={() => setVariant("success")}
-            className="w-48 text-base text-white rounded-sm lg:text-lg lg:w-52 py-7 bg-main_primary hover:bg-main_primary"
+          </button>
+          <button
+            onClick={() => setVariant("error")}
+            className="w-full py-2 text-base text-white rounded-sm sm:w-40 sm:py-3 lg:py-4 bg-main_primary hover:bg-main_primary"
           >
             Continue
-          </Button>
+          </button>
         </>
       ) : variant === "success" ? (
         <>
-          <Button
+          <button
             onClick={() => {
               toggleShowDialog();
             }}
-            className="w-48 text-base text-white rounded-sm lg:text-lg lg:w-52 py-7 bg-main_primary hover:bg-main_primary"
+            className="w-40 py-3 text-base text-white rounded-sm lg:w-48 lg:py-4 bg-main_primary hover:bg-main_primary"
           >
             Okay
-          </Button>
+          </button>
         </>
       ) : (
-        <Button
+        <button
           onClick={toggleShowDialog}
-          className="w-48 text-base text-white rounded-sm lg:text-lg lg:w-52 py-7 bg-main_primary hover:bg-main_primary"
+          className="w-40 py-3 text-base text-white rounded-sm lg:w-48 lg:py-4 bg-main_primary hover:bg-main_primary"
         >
           Try Again
-        </Button>
+        </button>
       )}
     </div>
   );
