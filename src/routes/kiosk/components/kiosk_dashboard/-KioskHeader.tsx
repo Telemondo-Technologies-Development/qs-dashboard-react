@@ -1,7 +1,7 @@
 import formatDateAndTime from "@/utils/dateFormatter";
 import { useEffect, useState } from "react";
 
-export default function Header() {
+export default function KioskHeader() {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   const updateCurrentTime = () => {

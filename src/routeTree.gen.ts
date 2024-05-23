@@ -13,18 +13,18 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as KioskLayoutRouteImport } from './routes/_kiosk-layout/route'
+import { Route as KioskRouteImport } from './routes/kiosk/route'
 import { Route as IndexImport } from './routes/index'
+import { Route as KioskIndexImport } from './routes/kiosk/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as AdminAdminLayoutImport } from './routes/admin/_admin-layout'
+import { Route as KioskNowServingIndexImport } from './routes/kiosk/now-serving/index'
 import { Route as AdminLoginIndexImport } from './routes/admin/login/index'
-import { Route as KioskLayoutKioskIndexImport } from './routes/_kiosk-layout/kiosk/index'
 import { Route as AdminAdminLayoutQueueingIndexImport } from './routes/admin/_admin-layout/queueing/index'
 import { Route as AdminAdminLayoutManagementIndexImport } from './routes/admin/_admin-layout/management/index'
 import { Route as AdminAdminLayoutDashboardIndexImport } from './routes/admin/_admin-layout/dashboard/index'
 import { Route as AdminAdminLayoutAppointmentsIndexImport } from './routes/admin/_admin-layout/appointments/index'
 import { Route as AdminAdminLayoutAnalyticsIndexImport } from './routes/admin/_admin-layout/analytics/index'
-import { Route as KioskLayoutKioskPagesNowServingRouteImport } from './routes/_kiosk-layout/kiosk/_pages/now-serving/route'
 
 // Create Virtual Routes
 
@@ -37,14 +37,19 @@ const AdminRoute = AdminImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const KioskLayoutRouteRoute = KioskLayoutRouteImport.update({
-  id: '/_kiosk-layout',
+const KioskRouteRoute = KioskRouteImport.update({
+  path: '/kiosk',
   getParentRoute: () => rootRoute,
 } as any)
 
 const IndexRoute = IndexImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
+} as any)
+
+const KioskIndexRoute = KioskIndexImport.update({
+  path: '/',
+  getParentRoute: () => KioskRouteRoute,
 } as any)
 
 const AdminIndexRoute = AdminIndexImport.update({
@@ -57,14 +62,14 @@ const AdminAdminLayoutRoute = AdminAdminLayoutImport.update({
   getParentRoute: () => AdminRoute,
 } as any)
 
+const KioskNowServingIndexRoute = KioskNowServingIndexImport.update({
+  path: '/now-serving/',
+  getParentRoute: () => KioskRouteRoute,
+} as any)
+
 const AdminLoginIndexRoute = AdminLoginIndexImport.update({
   path: '/login/',
   getParentRoute: () => AdminRoute,
-} as any)
-
-const KioskLayoutKioskIndexRoute = KioskLayoutKioskIndexImport.update({
-  path: '/kiosk/',
-  getParentRoute: () => KioskLayoutRouteRoute,
 } as any)
 
 const AdminAdminLayoutQueueingIndexRoute =
@@ -97,12 +102,6 @@ const AdminAdminLayoutAnalyticsIndexRoute =
     getParentRoute: () => AdminAdminLayoutRoute,
   } as any)
 
-const KioskLayoutKioskPagesNowServingRouteRoute =
-  KioskLayoutKioskPagesNowServingRouteImport.update({
-    path: '/kiosk/now-serving',
-    getParentRoute: () => KioskLayoutRouteRoute,
-  } as any)
-
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -111,8 +110,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/_kiosk-layout': {
-      preLoaderRoute: typeof KioskLayoutRouteImport
+    '/kiosk': {
+      preLoaderRoute: typeof KioskRouteImport
       parentRoute: typeof rootRoute
     }
     '/admin': {
@@ -127,17 +126,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexImport
       parentRoute: typeof AdminImport
     }
-    '/_kiosk-layout/kiosk/': {
-      preLoaderRoute: typeof KioskLayoutKioskIndexImport
-      parentRoute: typeof KioskLayoutRouteImport
+    '/kiosk/': {
+      preLoaderRoute: typeof KioskIndexImport
+      parentRoute: typeof KioskRouteImport
     }
     '/admin/login/': {
       preLoaderRoute: typeof AdminLoginIndexImport
       parentRoute: typeof AdminImport
     }
-    '/_kiosk-layout/kiosk/_pages/now-serving': {
-      preLoaderRoute: typeof KioskLayoutKioskPagesNowServingRouteImport
-      parentRoute: typeof KioskLayoutRouteImport
+    '/kiosk/now-serving/': {
+      preLoaderRoute: typeof KioskNowServingIndexImport
+      parentRoute: typeof KioskRouteImport
     }
     '/admin/_admin-layout/analytics/': {
       preLoaderRoute: typeof AdminAdminLayoutAnalyticsIndexImport
@@ -166,10 +165,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
-  KioskLayoutRouteRoute.addChildren([
-    KioskLayoutKioskIndexRoute,
-    KioskLayoutKioskPagesNowServingRouteRoute,
-  ]),
+  KioskRouteRoute.addChildren([KioskIndexRoute, KioskNowServingIndexRoute]),
   AdminRoute.addChildren([
     AdminAdminLayoutRoute.addChildren([
       AdminAdminLayoutAnalyticsIndexRoute,
