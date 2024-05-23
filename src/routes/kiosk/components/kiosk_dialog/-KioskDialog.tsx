@@ -10,10 +10,10 @@ export default function KioskDialog() {
 
   return (
     <AlertDialog open={isOpen}>
-      <AlertDialogContent className={`w-fit overflow-hidden`}>
+      <AlertDialogContent className={`${variant==="confirmation" ? "w-[80vw] max-w-3xl" : "w-[80vw] mobile-m:w-[70vw] mobile-l:w-[60vw] sm:w-[40vw] md:w-[35vw] lg:w-[30vw] max-w-xs"} overflow-hidden rounded-md transition-none`}>
         <div className="flex flex-col items-center justify-center font-poppins">
           <div
-            className={`${variant === "confirmation" ? "mx-12 px-4 md:px-6" : "mx-12 px-6"} w-full`}
+            className={`px-4 flex flex-col w-full`}
           >
             <DialogHeader variant={variant} />
             <DialogContent variant={variant} />
@@ -23,8 +23,4 @@ export default function KioskDialog() {
       </AlertDialogContent>
     </AlertDialog>
   );
-}
-
-{
-  /* <div className={`${variant==="confirmation" ? "mx-24" : "mx-12 px-6"} w-full`}> */
 }
