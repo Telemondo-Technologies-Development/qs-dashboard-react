@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import { useDialogStore } from "@/stores/kiosk/dialog_states";
 
 type DialogButtonsProps = {
