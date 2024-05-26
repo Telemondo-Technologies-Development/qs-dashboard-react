@@ -31,15 +31,16 @@ export default function DataTable<TData, TValue>({
 
   return (
     <div className="px-6 pt-6 size-full rounded-xl bg-main_extra">
-      <div className="space-y-4 overflow-auto size-full scrollbar-none">
-        <div className="flex items-center justify-between w-full">
+      <div className="relative overflow-auto size-full scrollbar-none">
+        <div className="sticky top-0 flex items-center justify-between w-full bg-main_extra">
           <p className="text-xl font-semibold">Queueing History</p>
           <button className="px-3 py-2 text-white rounded-md bg-main_primary">
             Sort: Newest
           </button>
         </div>
+        <div className="w-full h-4 bg-main_extra sticky top-[40px]"></div>
         <Table>
-          <TableHeader className="sticky top-0">
+          <TableHeader className="sticky top-[56px]">
             {table.getHeaderGroups().map((headerGroup) => (
               <TableRow
                 key={headerGroup.id}
