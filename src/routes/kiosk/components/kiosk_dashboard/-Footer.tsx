@@ -3,7 +3,7 @@
 
 export default function Footer() {
   return (
-    <footer className="flex justify-center space-x-6 py-1 border-t-[1px] border-main_primary">
+    <footer className="flex justify-center space-x-6 py-1 border-t-[1px] border-main_primary font-poppins">
       <p className="self-center text-xs">
         Powered by{" "}
         <a
