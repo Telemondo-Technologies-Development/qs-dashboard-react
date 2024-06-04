@@ -56,6 +56,8 @@ module.exports = {
         main_tertiary: "#B4CAEB",
         main_extra: "#D5E2F5",
         main_white: "#FAFAFA",
+        calendar_borders: "#c2cddf",
+        calendar_bg: "#d5e2f5",
       },
       fontFamily: {
         poppins: "Poppins",
