@@ -5,7 +5,7 @@ import AdminHeader from "./-AdminHeader";
 
 export const Route = createFileRoute("/admin/_admin-layout")({
   component: () => (
-    <div className="flex h-screen font-poppins">
+    <div className="flex h-screen font-poppins text-main_primary">
       <Navbar />
       <div className="flex flex-col flex-1">
         <AdminHeader/>
