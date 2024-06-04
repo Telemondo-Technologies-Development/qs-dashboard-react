@@ -2,10 +2,10 @@
 module.exports = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -13,9 +13,7 @@ module.exports = {
       center: true,
       padding: "2rem",
       screens: {
-        
         "2xl": "1400px",
-
       },
     },
     extend: {
@@ -53,20 +51,19 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        main_primary:"#2F4E6E",
-        main_secondary:"#8BAFE3",
+        main_primary: "#2F4E6E",
+        main_secondary: "#8BAFE3",
         main_tertiary: "#B4CAEB",
-        main_extra:"#D5E2F5",
+        main_extra: "#D5E2F5",
         main_white: "#FAFAFA",
       },
-      fontFamily:{
+      fontFamily: {
         poppins: "Poppins",
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        
       },
       keyframes: {
         "accordion-down": {
@@ -82,13 +79,14 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      screens:{
+      screens: {
         "mobile-s": "320px",
         "mobile-m": "375px",
         "mobile-l": "425px",
-      }
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],tailwindcss: {},
+  plugins: [require("tailwindcss-animate"), require("tailwind-scrollbar")],
+  tailwindcss: {},
   autoprefixer: {},
-}
+};
