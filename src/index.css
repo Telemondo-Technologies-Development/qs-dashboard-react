@@ -87,6 +87,12 @@ body {
 }
 
 @layer utilities {
+  .header-scrollbar::-webkit-scrollbar {
+    background-color: rgb(213 226 245);
+  }
+}
+
+@layer utilities {
   .queueing-scrollbar::-webkit-scrollbar {
     width: 15px;
   }
