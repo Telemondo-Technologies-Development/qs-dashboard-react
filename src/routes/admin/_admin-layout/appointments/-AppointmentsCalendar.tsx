@@ -52,7 +52,7 @@ function getDatesOfWeek(date: Date): Date[] {
 
 function getCalendarSelectionButtonFormat(startDate: Date): string {
   const firstDate = startDate;
-  const secondDate = endOfWeek(startDate);
+  const secondDate = addDays(startDate, 6);
   console.log(firstDate);
   if (format(firstDate, "yyyy") === format(secondDate, "yyyy")) {
     if (firstDate.getMonth === secondDate.getMonth) {
