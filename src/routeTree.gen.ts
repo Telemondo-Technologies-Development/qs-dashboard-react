@@ -22,7 +22,9 @@ import { Route as KioskNowServingIndexImport } from './routes/kiosk/now-serving/
 import { Route as AdminLoginIndexImport } from './routes/admin/login/index'
 import { Route as AdminAdminLayoutQueueingIndexImport } from './routes/admin/_admin-layout/queueing/index'
 import { Route as AdminAdminLayoutManagementIndexImport } from './routes/admin/_admin-layout/management/index'
+import { Route as AdminAdminLayoutKioskManagementIndexImport } from './routes/admin/_admin-layout/kiosk-management/index'
 import { Route as AdminAdminLayoutDashboardIndexImport } from './routes/admin/_admin-layout/dashboard/index'
+import { Route as AdminAdminLayoutCounterManagementIndexImport } from './routes/admin/_admin-layout/counter-management/index'
 import { Route as AdminAdminLayoutAppointmentsIndexImport } from './routes/admin/_admin-layout/appointments/index'
 import { Route as AdminAdminLayoutAnalyticsIndexImport } from './routes/admin/_admin-layout/analytics/index'
 
@@ -84,9 +86,21 @@ const AdminAdminLayoutManagementIndexRoute =
     getParentRoute: () => AdminAdminLayoutRoute,
   } as any)
 
+const AdminAdminLayoutKioskManagementIndexRoute =
+  AdminAdminLayoutKioskManagementIndexImport.update({
+    path: '/kiosk-management/',
+    getParentRoute: () => AdminAdminLayoutRoute,
+  } as any)
+
 const AdminAdminLayoutDashboardIndexRoute =
   AdminAdminLayoutDashboardIndexImport.update({
     path: '/dashboard/',
+    getParentRoute: () => AdminAdminLayoutRoute,
+  } as any)
+
+const AdminAdminLayoutCounterManagementIndexRoute =
+  AdminAdminLayoutCounterManagementIndexImport.update({
+    path: '/counter-management/',
     getParentRoute: () => AdminAdminLayoutRoute,
   } as any)
 
@@ -146,8 +160,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminLayoutAppointmentsIndexImport
       parentRoute: typeof AdminAdminLayoutImport
     }
+    '/admin/_admin-layout/counter-management/': {
+      preLoaderRoute: typeof AdminAdminLayoutCounterManagementIndexImport
+      parentRoute: typeof AdminAdminLayoutImport
+    }
     '/admin/_admin-layout/dashboard/': {
       preLoaderRoute: typeof AdminAdminLayoutDashboardIndexImport
+      parentRoute: typeof AdminAdminLayoutImport
+    }
+    '/admin/_admin-layout/kiosk-management/': {
+      preLoaderRoute: typeof AdminAdminLayoutKioskManagementIndexImport
       parentRoute: typeof AdminAdminLayoutImport
     }
     '/admin/_admin-layout/management/': {
@@ -170,7 +192,9 @@ export const routeTree = rootRoute.addChildren([
     AdminAdminLayoutRoute.addChildren([
       AdminAdminLayoutAnalyticsIndexRoute,
       AdminAdminLayoutAppointmentsIndexRoute,
+      AdminAdminLayoutCounterManagementIndexRoute,
       AdminAdminLayoutDashboardIndexRoute,
+      AdminAdminLayoutKioskManagementIndexRoute,
       AdminAdminLayoutManagementIndexRoute,
       AdminAdminLayoutQueueingIndexRoute,
     ]),
