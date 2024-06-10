@@ -2,7 +2,7 @@ import {
   AlertDialog,
   AlertDialogContent,
 } from "@/components/ui/alert-dialog";
-import { useKioskManagementStore } from "@/stores/admin/kiosk_mgmt_states";
+import { useKioskManagementStore } from "@/stores/admin/kiosk_mgmt_stores";
 import Footer from "@/routes/kiosk/components/kiosk_dashboard/-Footer";
 
 export default function PreviewKioskDialog() {
@@ -20,8 +20,8 @@ export default function PreviewKioskDialog() {
                     <p className="text-sm">Queueing and Billing System</p>
                   </div>
                 </div>
-                <div className="flex flex-col items-center justify-center text-sm">
-                  <p className="font-semibold">June 8, 2024</p>
+                <div className="flex flex-col items-end justify-center text-sm">
+                  <p className="font-semibold">January 46, 5032</p>
                   <p>09:50:54 PM</p>
                 </div>
               </div>
