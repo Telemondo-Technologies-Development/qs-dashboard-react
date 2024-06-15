@@ -15,22 +15,26 @@ export default function KioskHeader() {
 
   const { date, time } = formatDateAndTime(currentTime);
   return (
-    <header className="w-screen bg-[#2F4E6E] text-white py-3 px-12">
-      <div className="flex justify-between">
-        <div className="flex ">
+    <header className="w-screen bg-[#2F4E6E] text-white py-3 px-4 md:px-12 font-poppins">
+      <div className="flex justify-between items-center">
+        <div className="flex items-center">
           <img
             src="/kiosk-logo.png"
             alt="kbqs logo"
-            className="size-[70px] self-center"
+            className="size-20 sm:size-20  md:size-[90px] lg:size-[90px]"
           />
-          <div className="self-center pl-5">
-            <h1 className="text-2xl font-bold">KIOSK</h1>
-            <p className="text-base">Queuing and Billing System</p>
+          <div className="pl-3 md:pl-5">
+            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl hidden sm:block">
+              KIOSK
+            </h1>
+            <p className="text-base sm:text-sm md:text-base lg:text-lg hidden sm:block">
+              Queuing and Billing System
+            </p>
           </div>
         </div>
-        <div className="self-center">
-          <h1 className="text-base font-bold text-right">{date}</h1>
-          <p className="text-base text-right ">{time}</p>
+        <div className="text-right">
+          <h1 className="text-sm md:text-base font-bold">{date}</h1>
+          <p className="text-sm md:text-base">{time}</p>
         </div>
       </div>
     </header>
