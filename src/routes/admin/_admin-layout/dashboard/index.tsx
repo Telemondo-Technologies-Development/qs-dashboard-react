@@ -1,9 +1,9 @@
-import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import AdminDashboard from "./components/admin/-AdminDashboard";
 import StaffDashboard from "./components/staff/-StaffDashboard";
 import AppointmentsSection from "./-AppointmentsSection";
 
-let temp_user = "admin";
+const temp_user = "admin";
 
 export const Route = createFileRoute("/admin/_admin-layout/dashboard/")({
   component: () => <Dashboard />,
