@@ -3,17 +3,11 @@ import { useEffect, useState } from "react";
 import { useDialogStore } from "@/stores/kiosk/dialog_states";
 import { Counter } from "@/utils/types/kiosk_types";
 import { counterTypes } from "@/utils/variables/kiosk_variables";
-import { useFetchSpecificCategory } from "@/api/kiosk/kioskApi";
 
 export default function KioskDashboard() {
   const [selectedCounter, setSelectedCounter] = useState<Counter | undefined>(
     undefined
   );
-
-  const { data: specificCategory } = useFetchSpecificCategory(
-    "4e48e3d1-f0b6-4d21-a98a-58689a5127d4"
-  );
-  console.log(specificCategory);
 
   const setShowDialog = useDialogStore((state) => state.toggleShowDialog);
   const resetVariant = useDialogStore((state) => state.resetVariant);
