@@ -2,7 +2,8 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import CounterCard from "./-CounterCard";
 import VideoPlaybackControls from "./-VideoPlaybackControls";
 import VideoListItem from "./-VideoListItem";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
+import { useTempStore } from "@/stores/admin/monitorMgmt";
 
 export const Route = createFileRoute(
   "/admin/_admin-layout/monitor-management/add-monitor/"
@@ -11,10 +12,10 @@ export const Route = createFileRoute(
 });
 
 function AddMonitor() {
-  const [showChangeOptions, setShowChangeOptions] = useState(false);
+  const { showAddCategoryDialog, toggleShowAddCategoryDialog } = useTempStore();
 
   return (
-    <div className="flex flex-col flex-1 p-8 pt-5 pr-16 overflow-y-auto gap-7 text-main_primary">
+    <div className="flex flex-col flex-1 gap-4 p-8 pt-5 pr-16 overflow-y-auto text-main_primary">
       <div className="flex justify-between">
         <Link
           to="/admin/monitor-management"
@@ -31,22 +32,27 @@ function AddMonitor() {
           <p className="font-semibold">Remove Monitor</p>
         </button>
       </div>
+      <div className="flex justify-end gap-4">
+        <button className="px-5 py-1 font-semibold rounded-sm bg-main_secondary text-main_primary">
+          Discard Changes
+        </button>
+        <button className="flex items-center gap-2 px-5 py-1 text-white rounded-sm bg-main_primary">
+          <p className="font-semibold">Save Changes</p>
+        </button>
+      </div>
       <div className="flex flex-1 gap-8 overflow-y-auto">
-        <div className="flex flex-col flex-1 gap-6 p-5 overflow-y-auto rounded-2xl bg-main_extra">
+        <div className="flex flex-col flex-1 gap-4 p-5 overflow-y-auto rounded-2xl bg-main_extra">
           <div className="flex items-center">
             <p className="text-xl font-semibold">Counters</p>
-            {/* <button className="px-4 py-1 ml-auto font-semibold rounded-sm bg-main_secondary">
-              Discard Changes
-            </button>
-            <button className="px-4 py-1 ml-3 font-semibold text-white rounded-sm bg-main_primary">
-              Save Changes
-            </button> */}
           </div>
           <div className="grid flex-1 grid-flow-col grid-cols-2 grid-rows-4 px-3 pb-3 gap-x-6 gap-y-6">
             {Array.from({ length: 5 }).map((counterCard, index) => {
               return <CounterCard index={index} />;
             })}
-            <button className="rounded-xl aspect-[16/7.5] border-2 border-gray-400 border-dashed relative grid place-items-center">
+            <button
+              onClick={() => toggleShowAddCategoryDialog()}
+              className="rounded-xl aspect-[16/7.5] border-2 border-gray-400 border-dashed relative grid place-items-center"
+            >
               <p className="text-2xl font-semibold text-gray-400">
                 ADD CATEGORY
               </p>
@@ -57,27 +63,15 @@ function AddMonitor() {
             </button>
           </div>
         </div>
-        <section className="flex flex-col flex-1 gap-3 p-5 rounded-2xl bg-main_extra">
-          <header className="flex items-center w-full">
-            <p className="text-lg font-semibold">Video Playback</p>
-            {/* <button className="px-4 py-1 ml-auto font-semibold rounded-sm bg-main_secondary">
-              Discard Changes
-            </button>
-            <button className="px-4 py-1 ml-3 font-semibold text-white rounded-sm bg-main_primary">
-              Save Changes
-            </button> */}
-            <button className="self-end px-4 py-1 ml-auto font-semibold text-white rounded-sm bg-main_primary">
-              Change
-            </button>
-          </header>
-
+        <section className="flex flex-col flex-1 gap-4 p-5 rounded-2xl bg-main_extra">
+          <p className="text-lg font-semibold">Video Playback</p>
           <section className="flex flex-col flex-1 overflow-y-auto">
             <img
               src="/justforlaughs.png"
               className="object-cover object-center w-full h-60"
             />
             <VideoPlaybackControls />
-            <section className="w-full overflow-y-auto h-96 videolist-scrollbar bg-calendar_borders">
+            <section className="w-full overflow-y-auto h-96 bg-calendar_borders">
               {Array.from({ length: 3 }).map((video, index) => {
                 return <VideoListItem />;
               })}

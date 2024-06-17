@@ -2,7 +2,7 @@ import {
   AlertDialog,
   AlertDialogContent,
 } from "@/components/ui/alert-dialog";
-import { useKioskManagementStore } from "@/stores/admin/kiosk_mgmt_stores";
+import { useKioskManagementStore } from "@/stores/admin/kioskMgmt";
 import Footer from "@/routes/kiosk/components/kiosk_dashboard/-Footer";
 
 export default function PreviewKioskDialog() {

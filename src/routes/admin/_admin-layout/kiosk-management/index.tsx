@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useKioskManagementStore } from "@/stores/admin/kiosk_mgmt_stores";
+import { useKioskManagementStore } from "@/stores/admin/kioskMgmt";
 import PreviewKioskDialog from "./-PreviewKioskDialog";
 import { useEffect, useRef } from "react";
 
