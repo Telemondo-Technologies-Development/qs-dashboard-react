@@ -12,33 +12,16 @@ import {
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
 import { IconLoader2 } from "@tabler/icons-react";
+import { login } from "@/api/auth";
+import { useNavigate } from "@tanstack/react-router";
 
-const usernameTest = "admin";
-const passwordTest = "123";
-
-const loginSchema = z
-  .object({
-    username: z.string(),
-    password: z.string(),
-  })
-  .superRefine((data, ctx) => {
-    if (data.username !== usernameTest) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Please enter a valid username",
-        path: ["username"],
-      });
-    }
-    if (data.password !== passwordTest) {
-      ctx.addIssue({
-        code: z.ZodIssueCode.custom,
-        message: "Incorrect password",
-        path: ["password"],
-      });
-    }
-  });
+const loginSchema = z.object({
+  username: z.string().min(1, "Username is required"),
+  password: z.string().min(1, "Password is required"),
+});
 
 export default function Login() {
+  const navigate = useNavigate()
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     mode: "onSubmit",
@@ -50,9 +33,33 @@ export default function Login() {
   });
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log(values);
-    form.reset();
+    try {
+      const response = await login(values);
+      if (response.status === 200) {
+        console.log("Login successful:", response.data);
+        form.reset();
+        navigate({to: '/admin/dashboard'})
+      } else {
+        const errorMessage = response.data.errors[0].message || "Login failed";
+        form.setError("username", {
+          type: "manual",
+          message: "",
+        });
+        form.setError("password", {
+          type: "manual",
+          message: errorMessage,
+        });
+      }
+    } catch (error) {
+      form.setError("username", {
+        type: "manual",
+        message: "Unexpected error occurred. Please try again.",
+      });
+      form.setError("password", {
+        type: "manual",
+        message: "Unexpected error occurred. Please try again.",
+      });
+    }
   }
 
   return (
@@ -66,15 +73,24 @@ export default function Login() {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="flex flex-col place-items-center gap-10 w-[100%]"
+          className="flex flex-col place-items-center gap-12 w-[100%]"
         >
           <FormField
             control={form.control}
             name="username"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <FormItem className="w-[130%] h-[30px]">
                 <FormControl>
-                  <Input placeholder="username" {...field} type="username" />
+                  <Input
+                    placeholder="username"
+                    {...field}
+                    type="text"
+                    className={`${
+                      fieldState.error
+                        ? "border-red-500 placeholder-red-500"
+                        : ""
+                    }`}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -83,10 +99,19 @@ export default function Login() {
           <FormField
             control={form.control}
             name="password"
-            render={({ field }) => (
+            render={({ field, fieldState }) => (
               <FormItem className="w-[130%] h-[30px]">
                 <FormControl>
-                  <Input placeholder="password" {...field} type="password" />
+                  <Input
+                    placeholder="password"
+                    {...field}
+                    type="password"
+                    className={`${
+                      fieldState.error
+                        ? "border-red-500 placeholder-red-500"
+                        : ""
+                    }`}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -108,3 +133,4 @@ export default function Login() {
     </div>
   );
 }
+
