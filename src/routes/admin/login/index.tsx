@@ -7,15 +7,15 @@ export const Route = createFileRoute("/admin/login/")({
 });
 
 function Login() {
-  const [data, setData] = useState("");
+  const [email, setEmail] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
       <button
-        onClick={async () => {
+        onClick={() => {
           setIsLoading(true);
-          const res = axios
+          axios
             .post(
               "/api/core/auth/login",
               {
@@ -26,13 +26,12 @@ function Login() {
                 headers: {
                   "Content-Type": "application/json",
                 },
-                withCredentials: true
-              },
-              
+                withCredentials: true,
+              }
             )
             .then((res) => {
               setIsLoading(false);
-              setData(res.data.email);
+              setEmail(res.data.data.email);
             })
             .catch((err) => {
               console.error(err);
@@ -42,8 +41,12 @@ function Login() {
       >
         LOGIN
       </button>
-      {isLoading && <p className="text-lg">LOADING...</p>}
-      <p className="text-lg">{data === "" ? "not logged in" : data}</p>
+      {isLoading ? (
+        <p className="text-lg">LOADING...</p>
+      ) : (
+        <p className="text-lg">LOGGED IN</p>
+      )}
+      <p className="text-lg">{email === "" ? "unknown" : email}</p>
     </div>
   );
 }
