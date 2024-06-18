@@ -15,7 +15,7 @@ export default function MonitorCard({ index }: MonitorCardProps) {
       <MiniMonitorPreview />
       <div className="flex justify-center w-full gap-4">
         <button 
-        onClick={() => togglePreviewDialog()}
+        onClick={() => togglePreviewDialog("monitor")}
         className="w-[38%] py-2 text-main_primary bg-main_secondary rounded-md">
           Preview
         </button>

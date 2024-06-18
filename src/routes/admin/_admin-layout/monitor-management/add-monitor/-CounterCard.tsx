@@ -1,10 +1,18 @@
+import { useAdminGlobalStore } from "@/stores/admin/adminGlobalStore";
+import { useMonitorManagementStore } from "@/stores/admin/monitorMgmt";
+
 type CounterCardProps = {
   index: number;
 };
 
 export default function CounterCard({ index }: CounterCardProps) {
+  const { toggleShowAddCategoryDialog } = useMonitorManagementStore();
+
   return (
-    <div className="bg-white rounded-xl aspect-[16/7.5] flex relative">
+    <div
+      onClick={() => toggleShowAddCategoryDialog()}
+      className="bg-white rounded-xl aspect-[16/7.5] flex relative hover:cursor-pointer"
+    >
       <button className="absolute z-10 p-3 bg-red-500 rounded-full -top-3 -right-3">
         <div className="absolute w-[40%] h-[2px] rounded-full -translate-x-1/2 -translate-y-1/2 bg-white top-1/2 left-1/2"></div>
       </button>

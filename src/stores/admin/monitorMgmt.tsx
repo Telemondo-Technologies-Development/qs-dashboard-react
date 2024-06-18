@@ -5,7 +5,7 @@ type TempStore = {
   toggleShowAddCategoryDialog: () => void;
 };
 
-export const useTempStore = create<TempStore>()((set) => ({
+export const useMonitorManagementStore = create<TempStore>()((set) => ({
   showAddCategoryDialog: false,
   toggleShowAddCategoryDialog: () =>
     set((state) => ({ showAddCategoryDialog: !state.showAddCategoryDialog })),

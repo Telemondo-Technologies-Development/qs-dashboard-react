@@ -1,12 +1,20 @@
+import PreviewDialog from "@/routes/admin/-PreviewDialog";
 import { create } from "zustand";
 
+type PreviewDialogType = "monitor" | "kiosk" | undefined;
+
 type AdminGlobalStore = {
+  previewDialogType: PreviewDialogType;
   showPreviewDialog: boolean;
-  togglePreviewDialog: () => void;
+  togglePreviewDialog: (prevDialogType: PreviewDialogType) => void;
 };
 
 export const useAdminGlobalStore = create<AdminGlobalStore>()((set) => ({
+  previewDialogType: undefined,
   showPreviewDialog: false,
-  togglePreviewDialog: () =>
-    set((state) => ({ showPreviewDialog: !state.showPreviewDialog })),
+  togglePreviewDialog: (prevDialogType) =>
+    set((state) => ({
+      showPreviewDialog: !state.showPreviewDialog,
+      previewDialogType: prevDialogType,
+    })),
 }));

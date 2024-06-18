@@ -2,9 +2,7 @@ import { Link, createFileRoute } from "@tanstack/react-router";
 import CounterCard from "./-CounterCard";
 import VideoPlaybackControls from "./-VideoPlaybackControls";
 import VideoListItem from "./-VideoListItem";
-import { useState } from "react";
-import { useTempStore } from "@/stores/admin/monitorMgmt";
-
+import { useMonitorManagementStore } from "@/stores/admin/monitorMgmt";
 export const Route = createFileRoute(
   "/admin/_admin-layout/monitor-management/add-monitor/"
 )({
@@ -12,7 +10,7 @@ export const Route = createFileRoute(
 });
 
 function AddMonitor() {
-  const { showAddCategoryDialog, toggleShowAddCategoryDialog } = useTempStore();
+  const { showAddCategoryDialog, toggleShowAddCategoryDialog } = useMonitorManagementStore();
 
   return (
     <div className="flex flex-col flex-1 gap-4 p-8 pt-5 pr-16 overflow-y-auto text-main_primary">

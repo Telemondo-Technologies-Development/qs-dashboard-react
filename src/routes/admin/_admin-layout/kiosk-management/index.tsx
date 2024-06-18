@@ -29,13 +29,12 @@ function KioskManagement() {
 
   return (
     <div className="flex-1 p-8 transition-all">
-      <PreviewDialog type="kiosk"/>
       <div className="flex flex-col gap-8 p-6 bg-main_extra size-full rounded-3xl">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold text-main_primary">Categories</p>
           <div className="flex gap-3">
             <button
-              onClick={isEdit ? () => {} : () => togglePreviewDialog()}
+              onClick={isEdit ? () => {} : () => togglePreviewDialog("kiosk")}
               className="px-6 py-1 font-semibold rounded-sm bg-main_secondary text-main_primary"
             >
               {isEdit ? "Save Changes" : "Preview Kiosk"}

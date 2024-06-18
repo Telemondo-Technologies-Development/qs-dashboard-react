@@ -11,7 +11,6 @@ export const Route = createFileRoute(
 function MonitorManagement() {
   return (
     <div className="flex flex-col flex-1 gap-6 p-8 pr-16 overflow-y-auto">
-      <PreviewDialog type="monitor" />
       <div className="flex justify-end ">
         <Link
           to="/admin/monitor-management/add-monitor"
