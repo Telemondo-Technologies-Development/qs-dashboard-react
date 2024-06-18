@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useKioskManagementStore } from "@/stores/admin/kioskMgmt";
-import PreviewKioskDialog from "./-PreviewKioskDialog";
+import PreviewDialog from "../../-PreviewDialog";
 import { useEffect, useRef } from "react";
+import { useAdminGlobalStore } from "@/stores/admin/adminGlobalStore";
 
 export const Route = createFileRoute("/admin/_admin-layout/kiosk-management/")({
   component: () => <KioskManagement />,
@@ -11,13 +12,14 @@ function KioskManagement() {
   const {
     isEdit,
     toggleEdit,
-    togglePreviewKiosk,
     editCategories,
     categories,
     addEditCategory,
     removeEditCategory,
     resetEditCategories,
   } = useKioskManagementStore();
+
+  const { togglePreviewDialog } = useAdminGlobalStore();
 
   const categoryNameInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -27,13 +29,13 @@ function KioskManagement() {
 
   return (
     <div className="flex-1 p-8 transition-all">
-      <PreviewKioskDialog />
+      <PreviewDialog type="kiosk"/>
       <div className="flex flex-col gap-8 p-6 bg-main_extra size-full rounded-3xl">
         <div className="flex items-center justify-between">
           <p className="text-lg font-semibold text-main_primary">Categories</p>
           <div className="flex gap-3">
             <button
-              onClick={isEdit ? () => {} : () => togglePreviewKiosk()}
+              onClick={isEdit ? () => {} : () => togglePreviewDialog()}
               className="px-6 py-1 font-semibold rounded-sm bg-main_secondary text-main_primary"
             >
               {isEdit ? "Save Changes" : "Preview Kiosk"}

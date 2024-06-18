@@ -17,8 +17,6 @@ const initialCategories: Counter[] = [
 type KioskManagementStore = {
   isEdit: boolean;
   toggleEdit: () => void;
-  isPreviewKiosk: boolean;
-  togglePreviewKiosk: () => void;
   categories: Counter[];
   setCategories: (newCategories: Counter[]) => void;
   editCategories: Counter[];
@@ -32,9 +30,6 @@ export const useKioskManagementStore = create<KioskManagementStore>()(
   (set) => ({
     isEdit: false,
     toggleEdit: () => set((state) => ({ isEdit: !state.isEdit })),
-    isPreviewKiosk: false,
-    togglePreviewKiosk: () =>
-      set((state) => ({ isPreviewKiosk: !state.isPreviewKiosk })),
     categories: initialCategories,
     setCategories: (newCategories) =>
       set({
