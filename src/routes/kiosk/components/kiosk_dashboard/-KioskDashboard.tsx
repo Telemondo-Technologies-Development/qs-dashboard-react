@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
-import { useDialogStore } from "@/stores/kiosk/dialog_states";
+import { useDialogStore } from "@/stores/kiosk/dialogMgmt";
 import { Counter } from "@/utils/types/kiosk_types";
 import { counterTypes } from "@/utils/variables/kiosk_variables";
 

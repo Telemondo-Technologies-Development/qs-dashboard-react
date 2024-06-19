@@ -37,6 +37,11 @@ const pages = [
     position: "430px",
     path: "/admin/kiosk-management/",
   },
+  {
+    name: "Monitor Management",
+    position: "475px",
+    path: "/admin/monitor-management/",
+  },
 ];
 
 export default function Navbar() {
