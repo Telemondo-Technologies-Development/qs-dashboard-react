@@ -1,7 +1,7 @@
 export type Counter = {
-  counterID: number;
-  counterName: string;
-  counterImage?: string;
+  counterID: number | undefined;
+  counterName: string | undefined;
+  counterImage?: string | undefined;
 };
 
 export type DialogVariant = "confirmation" | "success" | "error";
