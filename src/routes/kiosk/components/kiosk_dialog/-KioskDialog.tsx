@@ -2,7 +2,7 @@ import { AlertDialog, AlertDialogContent } from "@/components/ui/alert-dialog";
 import DialogButtons from "./-DialogButtons";
 import DialogContent from "./-DialogContent";
 import DialogHeader from "./-DialogHeader";
-import { useDialogStore } from "@/stores/kiosk/dialog_states";
+import { useDialogStore } from "@/stores/kiosk/dialogMgmt";
 
 export default function KioskDialog() {
   const isOpen = useDialogStore((state) => state.isOpen);

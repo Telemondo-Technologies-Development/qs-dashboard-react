@@ -21,12 +21,14 @@ import { Route as AdminAdminLayoutImport } from './routes/admin/_admin-layout'
 import { Route as KioskNowServingIndexImport } from './routes/kiosk/now-serving/index'
 import { Route as AdminLoginIndexImport } from './routes/admin/login/index'
 import { Route as AdminAdminLayoutQueueingIndexImport } from './routes/admin/_admin-layout/queueing/index'
+import { Route as AdminAdminLayoutMonitorManagementIndexImport } from './routes/admin/_admin-layout/monitor-management/index'
 import { Route as AdminAdminLayoutManagementIndexImport } from './routes/admin/_admin-layout/management/index'
 import { Route as AdminAdminLayoutKioskManagementIndexImport } from './routes/admin/_admin-layout/kiosk-management/index'
 import { Route as AdminAdminLayoutDashboardIndexImport } from './routes/admin/_admin-layout/dashboard/index'
 import { Route as AdminAdminLayoutCounterManagementIndexImport } from './routes/admin/_admin-layout/counter-management/index'
 import { Route as AdminAdminLayoutAppointmentsIndexImport } from './routes/admin/_admin-layout/appointments/index'
 import { Route as AdminAdminLayoutAnalyticsIndexImport } from './routes/admin/_admin-layout/analytics/index'
+import { Route as AdminAdminLayoutMonitorManagementAddMonitorIndexImport } from './routes/admin/_admin-layout/monitor-management/add-monitor/index'
 
 // Create Virtual Routes
 
@@ -80,6 +82,12 @@ const AdminAdminLayoutQueueingIndexRoute =
     getParentRoute: () => AdminAdminLayoutRoute,
   } as any)
 
+const AdminAdminLayoutMonitorManagementIndexRoute =
+  AdminAdminLayoutMonitorManagementIndexImport.update({
+    path: '/monitor-management/',
+    getParentRoute: () => AdminAdminLayoutRoute,
+  } as any)
+
 const AdminAdminLayoutManagementIndexRoute =
   AdminAdminLayoutManagementIndexImport.update({
     path: '/management/',
@@ -113,6 +121,12 @@ const AdminAdminLayoutAppointmentsIndexRoute =
 const AdminAdminLayoutAnalyticsIndexRoute =
   AdminAdminLayoutAnalyticsIndexImport.update({
     path: '/analytics/',
+    getParentRoute: () => AdminAdminLayoutRoute,
+  } as any)
+
+const AdminAdminLayoutMonitorManagementAddMonitorIndexRoute =
+  AdminAdminLayoutMonitorManagementAddMonitorIndexImport.update({
+    path: '/monitor-management/add-monitor/',
     getParentRoute: () => AdminAdminLayoutRoute,
   } as any)
 
@@ -176,8 +190,16 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminAdminLayoutManagementIndexImport
       parentRoute: typeof AdminAdminLayoutImport
     }
+    '/admin/_admin-layout/monitor-management/': {
+      preLoaderRoute: typeof AdminAdminLayoutMonitorManagementIndexImport
+      parentRoute: typeof AdminAdminLayoutImport
+    }
     '/admin/_admin-layout/queueing/': {
       preLoaderRoute: typeof AdminAdminLayoutQueueingIndexImport
+      parentRoute: typeof AdminAdminLayoutImport
+    }
+    '/admin/_admin-layout/monitor-management/add-monitor/': {
+      preLoaderRoute: typeof AdminAdminLayoutMonitorManagementAddMonitorIndexImport
       parentRoute: typeof AdminAdminLayoutImport
     }
   }
@@ -196,7 +218,9 @@ export const routeTree = rootRoute.addChildren([
       AdminAdminLayoutDashboardIndexRoute,
       AdminAdminLayoutKioskManagementIndexRoute,
       AdminAdminLayoutManagementIndexRoute,
+      AdminAdminLayoutMonitorManagementIndexRoute,
       AdminAdminLayoutQueueingIndexRoute,
+      AdminAdminLayoutMonitorManagementAddMonitorIndexRoute,
     ]),
     AdminIndexRoute,
     AdminLoginIndexRoute,
