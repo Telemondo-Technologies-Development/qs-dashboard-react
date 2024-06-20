@@ -161,6 +161,7 @@ export default function AppointmentCalendar() {
             {weekDates.map((weekDate, dateIndex) => {
               return (
                 <div
+                key={dateIndex}
                   className={`relative flex-1 flex flex-col items-center ${
                     dateIndex !== weekDates.length - 1 ? "border-r" : ""
                   } border-calendar_borders`}

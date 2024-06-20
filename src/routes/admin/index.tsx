@@ -1,5 +1,6 @@
-import { Navigate, createFileRoute } from '@tanstack/react-router'
+import { Navigate, createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute('/admin/')({
-  component: () => <Navigate to='/admin/login' replace={true}/>
-})
+export const Route = createFileRoute("/admin/")({
+  component: () => <Navigate to="/admin/login" replace={true} />
+});
+
