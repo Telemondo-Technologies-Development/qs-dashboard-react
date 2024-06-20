@@ -1,4 +1,12 @@
 import axios from "axios";
+import {
+  QueryClient,
+  UseQueryResult,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { LoginData } from "@/utils/types/auth_types";
 
 const BASE_URL = "/api/core/auth";
 
@@ -10,7 +18,6 @@ type LoginCredentials = {
 export const login = async (credentials: LoginCredentials) => {
   try {
     const response = await axios.post(`${BASE_URL}/login`, credentials);
-    console.log(response);
     return response;
   } catch (error) {
     if (axios.isAxiosError(error) && error.response) {
@@ -20,3 +27,23 @@ export const login = async (credentials: LoginCredentials) => {
   }
 };
 
+export function useLoginMutation(queryClient: QueryClient) {
+  return useMutation({
+    mutationFn: login,
+    onSuccess: (response) => {
+      console.log(response.data.data);
+      queryClient.setQueryData<LoginData>(["userData"], response.data.data);
+    },
+  });
+}
+
+export function useCachedUserData() {
+  return useQuery<LoginData, Error>({
+    queryKey: ["userData"],
+    enabled: false,
+    // staleTime: Infinity,
+    // refetchOnWindowFocus: false,
+    // refetchOnMount: false,
+    // retry: false,
+  });
+}
