@@ -27,6 +27,21 @@ export const counterTypes: Counter[] = [
     counterName: "Customer Service",
     counterImage: "/kiosk-images/customers-service.png",
   },
+  {
+    counterID: 6,
+    counterName: "Customer Service",
+    counterImage: "/kiosk-images/customers-service.png",
+  },
+  {
+    counterID: 7,
+    counterName: "Customer Service",
+    counterImage: "/kiosk-images/customers-service.png",
+  },
+  {
+    counterID: 8,
+    counterName: "Customer Service",
+    counterImage: "/kiosk-images/customers-service.png",
+  },
 ];
 
 export const ticketTypes: Ticket[] = [
