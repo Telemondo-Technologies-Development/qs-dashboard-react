@@ -1,15 +1,7 @@
-import { useCachedUserData } from "@/api/auth";
-import { useQueryClient } from "@tanstack/react-query";
-import { LoginData } from "@/utils/types/auth_types";
+import { useUserData } from "@/api/auth";
 
 export default function AdminHeader() {
-  // const queryClient = useQueryClient();
-  const { data: cachedUserData, error } = useCachedUserData();
-  const getUserDataLocalStorage = localStorage.getItem("userDataLocalStorage")
-  const userDataLocalStorage = getUserDataLocalStorage && JSON.parse(getUserDataLocalStorage) as LoginData
-  // const cachedUserData = queryClient.getQueryData<LoginData>(["userData"]);
-  // console.log("THIS IS FROM ADMINHEADER", userDataLocalStorage);
-  console.log("THIS IS FROM ADMINHEADER", cachedUserData);
+  const {data: userData, error} = useUserData()
 
   return (
     <div className="flex items-center justify-between px-8 pt-6 pb-3">
@@ -21,14 +13,11 @@ export default function AdminHeader() {
         <div className="flex items-center gap-[10px]">
           <img src="/user-icon.svg" className="size-5" />
           <p className="text-sm font-bold">
-            {userDataLocalStorage
-                ? `${userDataLocalStorage.firstName} ${userDataLocalStorage.lastName}`
-                : "Loading..."}
-            {/* {error
+            {error
               ? error.message
-              : cachedUserData
-                ? `${cachedUserData.firstName} ${cachedUserData.lastName}`
-                : "Loading..."} */}
+              : userData
+                ? `${userData.firstName} ${userData.lastName}`
+                : "Loading..."}
           </p>
         </div>
       </div>

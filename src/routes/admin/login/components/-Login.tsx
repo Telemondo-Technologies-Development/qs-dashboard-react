@@ -1,5 +1,5 @@
-import { LoginData } from "@/utils/types/auth_types";
-import { useLoginMutation } from "@/api/auth";
+
+import { UserData } from "@/utils/types/auth_types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 import { IconLoader2 } from "@tabler/icons-react";
 import { login } from "@/api/auth";
 import { useNavigate } from "@tanstack/react-router";
-import { QueryClient, useQueryClient } from "@tanstack/react-query";
+import { useQueryClient } from "@tanstack/react-query";
 const loginSchema = z.object({
   username: z.string().min(1, "Username is required"),
   password: z.string().min(1, "Password is required"),
@@ -33,14 +33,12 @@ export default function Login() {
   });
 
   const queryClient = useQueryClient();
-  // const loginMutation = useLoginMutation(queryClient);
-
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     try {
       const response = await login(values);
       if (response.status === 200) {
-        localStorage.setItem("userDataLocalStorage", JSON.stringify(response.data.data))
-        queryClient.setQueryData<LoginData>(['userData'], response.data.data)
+        const userData = response.data.data as UserData
+        queryClient.setQueryData<UserData>(['userData'], userData)
         form.reset();
         navigate({ to: "/admin/dashboard" });
       } else {

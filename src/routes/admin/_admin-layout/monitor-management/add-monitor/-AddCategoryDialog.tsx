@@ -40,6 +40,7 @@ export default function AddCategoryDialog() {
               {Array.from({ length: 10 }).map((counter, index) => {
                 return (
                   <div
+                  key={index}
                     className={`flex ${index + 1 < 4 ? "bg-calendar_borders" : index + 1 === 4 ? "bg-main_primary text-white" : "bg-white"} rounded-lg min-h-24`}
                   >
                     <div className="flex items-center justify-center flex-1 text-3xl font-bold">

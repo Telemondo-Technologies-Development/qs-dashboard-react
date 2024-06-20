@@ -6,7 +6,7 @@ import {
   useQuery,
   useQueryClient,
 } from "@tanstack/react-query";
-import { LoginData } from "@/utils/types/auth_types";
+import { UserData } from "@/utils/types/auth_types";
 
 const BASE_URL = "/api/core/auth";
 
@@ -27,23 +27,30 @@ export const login = async (credentials: LoginCredentials) => {
   }
 };
 
-export function useLoginMutation(queryClient: QueryClient) {
-  return useMutation({
-    mutationFn: login,
-    onSuccess: (response) => {
-      console.log(response.data.data);
-      queryClient.setQueryData<LoginData>(["userData"], response.data.data);
-    },
-  });
-}
+// export function useLoginMutation(queryClient: QueryClient) {
+//   return useMutation({
+//     mutationFn: login,
+//     onSuccess: (response) => {
+//       console.log(response.data.data);
+//       queryClient.setQueryData<UserData>(["userData"], response.data.data);
+//     },
+//   });
+// }
 
-export function useCachedUserData() {
-  return useQuery<LoginData, Error>({
+
+
+
+export function useUserData() {
+  return useQuery<UserData>({
     queryKey: ["userData"],
-    enabled: false,
-    // staleTime: Infinity,
-    // refetchOnWindowFocus: false,
-    // refetchOnMount: false,
-    // retry: false,
+    queryFn: async () => {
+      console.log('fetching from useUserData');
+      const { data: userData } = await axios.get(`/api/core/user/profile`);
+      return userData.data as UserData;
+    },
+    staleTime: Infinity,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+    retry: false,
   });
 }
