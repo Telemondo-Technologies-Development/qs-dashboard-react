@@ -17,29 +17,33 @@ import { Route as KioskRouteImport } from './routes/kiosk/route'
 import { Route as IndexImport } from './routes/index'
 import { Route as KioskIndexImport } from './routes/kiosk/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
-import { Route as AdminAdminLayoutImport } from './routes/admin/_admin-layout'
 import { Route as KioskNowServingIndexImport } from './routes/kiosk/now-serving/index'
+import { Route as AdminRoleStaffIndexImport } from './routes/admin/role-staff/index'
+import { Route as AdminRoleAdminIndexImport } from './routes/admin/role-admin/index'
 import { Route as AdminLoginIndexImport } from './routes/admin/login/index'
-import { Route as AdminAdminLayoutQueueingIndexImport } from './routes/admin/_admin-layout/queueing/index'
-import { Route as AdminAdminLayoutMonitorManagementIndexImport } from './routes/admin/_admin-layout/monitor-management/index'
-import { Route as AdminAdminLayoutManagementIndexImport } from './routes/admin/_admin-layout/management/index'
-import { Route as AdminAdminLayoutKioskManagementIndexImport } from './routes/admin/_admin-layout/kiosk-management/index'
-import { Route as AdminAdminLayoutDashboardIndexImport } from './routes/admin/_admin-layout/dashboard/index'
-import { Route as AdminAdminLayoutCounterManagementIndexImport } from './routes/admin/_admin-layout/counter-management/index'
-import { Route as AdminAdminLayoutAppointmentsIndexImport } from './routes/admin/_admin-layout/appointments/index'
-import { Route as AdminAdminLayoutAnalyticsIndexImport } from './routes/admin/_admin-layout/analytics/index'
-import { Route as AdminAdminLayoutMonitorManagementAddMonitorIndexImport } from './routes/admin/_admin-layout/monitor-management/add-monitor/index'
+import { Route as AdminRoleStaffRoleStaffLayoutImport } from './routes/admin/role-staff/_role-staff-layout'
+import { Route as AdminRoleAdminRoleAdminLayoutImport } from './routes/admin/role-admin/_role-admin-layout'
+import { Route as AdminRoleStaffRoleStaffLayoutQueueingIndexImport } from './routes/admin/role-staff/_role-staff-layout/queueing/index'
+import { Route as AdminRoleStaffRoleStaffLayoutDashboardIndexImport } from './routes/admin/role-staff/_role-staff-layout/dashboard/index'
+import { Route as AdminRoleStaffRoleStaffLayoutCounterSelectionIndexImport } from './routes/admin/role-staff/_role-staff-layout/counter-selection/index'
+import { Route as AdminRoleStaffRoleStaffLayoutAppointmentsIndexImport } from './routes/admin/role-staff/_role-staff-layout/appointments/index'
+import { Route as AdminRoleStaffRoleStaffLayoutAnalyticsIndexImport } from './routes/admin/role-staff/_role-staff-layout/analytics/index'
+import { Route as AdminRoleAdminRoleAdminLayoutUserManagementIndexImport } from './routes/admin/role-admin/_role-admin-layout/user-management/index'
+import { Route as AdminRoleAdminRoleAdminLayoutQueueingIndexImport } from './routes/admin/role-admin/_role-admin-layout/queueing/index'
+import { Route as AdminRoleAdminRoleAdminLayoutMonitorManagementIndexImport } from './routes/admin/role-admin/_role-admin-layout/monitor-management/index'
+import { Route as AdminRoleAdminRoleAdminLayoutKioskManagementIndexImport } from './routes/admin/role-admin/_role-admin-layout/kiosk-management/index'
+import { Route as AdminRoleAdminRoleAdminLayoutDashboardIndexImport } from './routes/admin/role-admin/_role-admin-layout/dashboard/index'
+import { Route as AdminRoleAdminRoleAdminLayoutCounterManagementIndexImport } from './routes/admin/role-admin/_role-admin-layout/counter-management/index'
+import { Route as AdminRoleAdminRoleAdminLayoutAppointmentsIndexImport } from './routes/admin/role-admin/_role-admin-layout/appointments/index'
+import { Route as AdminRoleAdminRoleAdminLayoutAnalyticsIndexImport } from './routes/admin/role-admin/_role-admin-layout/analytics/index'
+import { Route as AdminRoleAdminRoleAdminLayoutMonitorManagementAddMonitorIndexImport } from './routes/admin/role-admin/_role-admin-layout/monitor-management/add-monitor/index'
 
 // Create Virtual Routes
 
-const AdminImport = createFileRoute('/admin')()
+const AdminRoleStaffImport = createFileRoute('/admin/role-staff')()
+const AdminRoleAdminImport = createFileRoute('/admin/role-admin')()
 
 // Create/Update Routes
-
-const AdminRoute = AdminImport.update({
-  path: '/admin',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const KioskRouteRoute = KioskRouteImport.update({
   path: '/kiosk',
@@ -51,19 +55,24 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminRoleStaffRoute = AdminRoleStaffImport.update({
+  path: '/admin/role-staff',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminRoleAdminRoute = AdminRoleAdminImport.update({
+  path: '/admin/role-admin',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const KioskIndexRoute = KioskIndexImport.update({
   path: '/',
   getParentRoute: () => KioskRouteRoute,
 } as any)
 
 const AdminIndexRoute = AdminIndexImport.update({
-  path: '/',
-  getParentRoute: () => AdminRoute,
-} as any)
-
-const AdminAdminLayoutRoute = AdminAdminLayoutImport.update({
-  id: '/_admin-layout',
-  getParentRoute: () => AdminRoute,
+  path: '/admin/',
+  getParentRoute: () => rootRoute,
 } as any)
 
 const KioskNowServingIndexRoute = KioskNowServingIndexImport.update({
@@ -71,63 +80,115 @@ const KioskNowServingIndexRoute = KioskNowServingIndexImport.update({
   getParentRoute: () => KioskRouteRoute,
 } as any)
 
-const AdminLoginIndexRoute = AdminLoginIndexImport.update({
-  path: '/login/',
-  getParentRoute: () => AdminRoute,
+const AdminRoleStaffIndexRoute = AdminRoleStaffIndexImport.update({
+  path: '/',
+  getParentRoute: () => AdminRoleStaffRoute,
 } as any)
 
-const AdminAdminLayoutQueueingIndexRoute =
-  AdminAdminLayoutQueueingIndexImport.update({
+const AdminRoleAdminIndexRoute = AdminRoleAdminIndexImport.update({
+  path: '/',
+  getParentRoute: () => AdminRoleAdminRoute,
+} as any)
+
+const AdminLoginIndexRoute = AdminLoginIndexImport.update({
+  path: '/admin/login/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminRoleStaffRoleStaffLayoutRoute =
+  AdminRoleStaffRoleStaffLayoutImport.update({
+    id: '/_role-staff-layout',
+    getParentRoute: () => AdminRoleStaffRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutRoute =
+  AdminRoleAdminRoleAdminLayoutImport.update({
+    id: '/_role-admin-layout',
+    getParentRoute: () => AdminRoleAdminRoute,
+  } as any)
+
+const AdminRoleStaffRoleStaffLayoutQueueingIndexRoute =
+  AdminRoleStaffRoleStaffLayoutQueueingIndexImport.update({
     path: '/queueing/',
-    getParentRoute: () => AdminAdminLayoutRoute,
+    getParentRoute: () => AdminRoleStaffRoleStaffLayoutRoute,
   } as any)
 
-const AdminAdminLayoutMonitorManagementIndexRoute =
-  AdminAdminLayoutMonitorManagementIndexImport.update({
-    path: '/monitor-management/',
-    getParentRoute: () => AdminAdminLayoutRoute,
-  } as any)
-
-const AdminAdminLayoutManagementIndexRoute =
-  AdminAdminLayoutManagementIndexImport.update({
-    path: '/management/',
-    getParentRoute: () => AdminAdminLayoutRoute,
-  } as any)
-
-const AdminAdminLayoutKioskManagementIndexRoute =
-  AdminAdminLayoutKioskManagementIndexImport.update({
-    path: '/kiosk-management/',
-    getParentRoute: () => AdminAdminLayoutRoute,
-  } as any)
-
-const AdminAdminLayoutDashboardIndexRoute =
-  AdminAdminLayoutDashboardIndexImport.update({
+const AdminRoleStaffRoleStaffLayoutDashboardIndexRoute =
+  AdminRoleStaffRoleStaffLayoutDashboardIndexImport.update({
     path: '/dashboard/',
-    getParentRoute: () => AdminAdminLayoutRoute,
+    getParentRoute: () => AdminRoleStaffRoleStaffLayoutRoute,
   } as any)
 
-const AdminAdminLayoutCounterManagementIndexRoute =
-  AdminAdminLayoutCounterManagementIndexImport.update({
-    path: '/counter-management/',
-    getParentRoute: () => AdminAdminLayoutRoute,
+const AdminRoleStaffRoleStaffLayoutCounterSelectionIndexRoute =
+  AdminRoleStaffRoleStaffLayoutCounterSelectionIndexImport.update({
+    path: '/counter-selection/',
+    getParentRoute: () => AdminRoleStaffRoleStaffLayoutRoute,
   } as any)
 
-const AdminAdminLayoutAppointmentsIndexRoute =
-  AdminAdminLayoutAppointmentsIndexImport.update({
+const AdminRoleStaffRoleStaffLayoutAppointmentsIndexRoute =
+  AdminRoleStaffRoleStaffLayoutAppointmentsIndexImport.update({
     path: '/appointments/',
-    getParentRoute: () => AdminAdminLayoutRoute,
+    getParentRoute: () => AdminRoleStaffRoleStaffLayoutRoute,
   } as any)
 
-const AdminAdminLayoutAnalyticsIndexRoute =
-  AdminAdminLayoutAnalyticsIndexImport.update({
+const AdminRoleStaffRoleStaffLayoutAnalyticsIndexRoute =
+  AdminRoleStaffRoleStaffLayoutAnalyticsIndexImport.update({
     path: '/analytics/',
-    getParentRoute: () => AdminAdminLayoutRoute,
+    getParentRoute: () => AdminRoleStaffRoleStaffLayoutRoute,
   } as any)
 
-const AdminAdminLayoutMonitorManagementAddMonitorIndexRoute =
-  AdminAdminLayoutMonitorManagementAddMonitorIndexImport.update({
+const AdminRoleAdminRoleAdminLayoutUserManagementIndexRoute =
+  AdminRoleAdminRoleAdminLayoutUserManagementIndexImport.update({
+    path: '/user-management/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutQueueingIndexRoute =
+  AdminRoleAdminRoleAdminLayoutQueueingIndexImport.update({
+    path: '/queueing/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutMonitorManagementIndexRoute =
+  AdminRoleAdminRoleAdminLayoutMonitorManagementIndexImport.update({
+    path: '/monitor-management/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutKioskManagementIndexRoute =
+  AdminRoleAdminRoleAdminLayoutKioskManagementIndexImport.update({
+    path: '/kiosk-management/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutDashboardIndexRoute =
+  AdminRoleAdminRoleAdminLayoutDashboardIndexImport.update({
+    path: '/dashboard/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutCounterManagementIndexRoute =
+  AdminRoleAdminRoleAdminLayoutCounterManagementIndexImport.update({
+    path: '/counter-management/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutAppointmentsIndexRoute =
+  AdminRoleAdminRoleAdminLayoutAppointmentsIndexImport.update({
+    path: '/appointments/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutAnalyticsIndexRoute =
+  AdminRoleAdminRoleAdminLayoutAnalyticsIndexImport.update({
+    path: '/analytics/',
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
+  } as any)
+
+const AdminRoleAdminRoleAdminLayoutMonitorManagementAddMonitorIndexRoute =
+  AdminRoleAdminRoleAdminLayoutMonitorManagementAddMonitorIndexImport.update({
     path: '/monitor-management/add-monitor/',
-    getParentRoute: () => AdminAdminLayoutRoute,
+    getParentRoute: () => AdminRoleAdminRoleAdminLayoutRoute,
   } as any)
 
 // Populate the FileRoutesByPath interface
@@ -142,65 +203,101 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof KioskRouteImport
       parentRoute: typeof rootRoute
     }
-    '/admin': {
-      preLoaderRoute: typeof AdminImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/_admin-layout': {
-      preLoaderRoute: typeof AdminAdminLayoutImport
-      parentRoute: typeof AdminRoute
-    }
     '/admin/': {
       preLoaderRoute: typeof AdminIndexImport
-      parentRoute: typeof AdminImport
+      parentRoute: typeof rootRoute
     }
     '/kiosk/': {
       preLoaderRoute: typeof KioskIndexImport
       parentRoute: typeof KioskRouteImport
     }
+    '/admin/role-admin': {
+      preLoaderRoute: typeof AdminRoleAdminImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/role-admin/_role-admin-layout': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutImport
+      parentRoute: typeof AdminRoleAdminRoute
+    }
+    '/admin/role-staff': {
+      preLoaderRoute: typeof AdminRoleStaffImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/role-staff/_role-staff-layout': {
+      preLoaderRoute: typeof AdminRoleStaffRoleStaffLayoutImport
+      parentRoute: typeof AdminRoleStaffRoute
+    }
     '/admin/login/': {
       preLoaderRoute: typeof AdminLoginIndexImport
-      parentRoute: typeof AdminImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/role-admin/': {
+      preLoaderRoute: typeof AdminRoleAdminIndexImport
+      parentRoute: typeof AdminRoleAdminImport
+    }
+    '/admin/role-staff/': {
+      preLoaderRoute: typeof AdminRoleStaffIndexImport
+      parentRoute: typeof AdminRoleStaffImport
     }
     '/kiosk/now-serving/': {
       preLoaderRoute: typeof KioskNowServingIndexImport
       parentRoute: typeof KioskRouteImport
     }
-    '/admin/_admin-layout/analytics/': {
-      preLoaderRoute: typeof AdminAdminLayoutAnalyticsIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/analytics/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutAnalyticsIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/appointments/': {
-      preLoaderRoute: typeof AdminAdminLayoutAppointmentsIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/appointments/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutAppointmentsIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/counter-management/': {
-      preLoaderRoute: typeof AdminAdminLayoutCounterManagementIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/counter-management/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutCounterManagementIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/dashboard/': {
-      preLoaderRoute: typeof AdminAdminLayoutDashboardIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/dashboard/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutDashboardIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/kiosk-management/': {
-      preLoaderRoute: typeof AdminAdminLayoutKioskManagementIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/kiosk-management/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutKioskManagementIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/management/': {
-      preLoaderRoute: typeof AdminAdminLayoutManagementIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/monitor-management/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutMonitorManagementIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/monitor-management/': {
-      preLoaderRoute: typeof AdminAdminLayoutMonitorManagementIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/queueing/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutQueueingIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/queueing/': {
-      preLoaderRoute: typeof AdminAdminLayoutQueueingIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-admin/_role-admin-layout/user-management/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutUserManagementIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
-    '/admin/_admin-layout/monitor-management/add-monitor/': {
-      preLoaderRoute: typeof AdminAdminLayoutMonitorManagementAddMonitorIndexImport
-      parentRoute: typeof AdminAdminLayoutImport
+    '/admin/role-staff/_role-staff-layout/analytics/': {
+      preLoaderRoute: typeof AdminRoleStaffRoleStaffLayoutAnalyticsIndexImport
+      parentRoute: typeof AdminRoleStaffRoleStaffLayoutImport
+    }
+    '/admin/role-staff/_role-staff-layout/appointments/': {
+      preLoaderRoute: typeof AdminRoleStaffRoleStaffLayoutAppointmentsIndexImport
+      parentRoute: typeof AdminRoleStaffRoleStaffLayoutImport
+    }
+    '/admin/role-staff/_role-staff-layout/counter-selection/': {
+      preLoaderRoute: typeof AdminRoleStaffRoleStaffLayoutCounterSelectionIndexImport
+      parentRoute: typeof AdminRoleStaffRoleStaffLayoutImport
+    }
+    '/admin/role-staff/_role-staff-layout/dashboard/': {
+      preLoaderRoute: typeof AdminRoleStaffRoleStaffLayoutDashboardIndexImport
+      parentRoute: typeof AdminRoleStaffRoleStaffLayoutImport
+    }
+    '/admin/role-staff/_role-staff-layout/queueing/': {
+      preLoaderRoute: typeof AdminRoleStaffRoleStaffLayoutQueueingIndexImport
+      parentRoute: typeof AdminRoleStaffRoleStaffLayoutImport
+    }
+    '/admin/role-admin/_role-admin-layout/monitor-management/add-monitor/': {
+      preLoaderRoute: typeof AdminRoleAdminRoleAdminLayoutMonitorManagementAddMonitorIndexImport
+      parentRoute: typeof AdminRoleAdminRoleAdminLayoutImport
     }
   }
 }
@@ -210,21 +307,32 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   KioskRouteRoute.addChildren([KioskIndexRoute, KioskNowServingIndexRoute]),
-  AdminRoute.addChildren([
-    AdminAdminLayoutRoute.addChildren([
-      AdminAdminLayoutAnalyticsIndexRoute,
-      AdminAdminLayoutAppointmentsIndexRoute,
-      AdminAdminLayoutCounterManagementIndexRoute,
-      AdminAdminLayoutDashboardIndexRoute,
-      AdminAdminLayoutKioskManagementIndexRoute,
-      AdminAdminLayoutManagementIndexRoute,
-      AdminAdminLayoutMonitorManagementIndexRoute,
-      AdminAdminLayoutQueueingIndexRoute,
-      AdminAdminLayoutMonitorManagementAddMonitorIndexRoute,
+  AdminIndexRoute,
+  AdminRoleAdminRoute.addChildren([
+    AdminRoleAdminRoleAdminLayoutRoute.addChildren([
+      AdminRoleAdminRoleAdminLayoutAnalyticsIndexRoute,
+      AdminRoleAdminRoleAdminLayoutAppointmentsIndexRoute,
+      AdminRoleAdminRoleAdminLayoutCounterManagementIndexRoute,
+      AdminRoleAdminRoleAdminLayoutDashboardIndexRoute,
+      AdminRoleAdminRoleAdminLayoutKioskManagementIndexRoute,
+      AdminRoleAdminRoleAdminLayoutMonitorManagementIndexRoute,
+      AdminRoleAdminRoleAdminLayoutQueueingIndexRoute,
+      AdminRoleAdminRoleAdminLayoutUserManagementIndexRoute,
+      AdminRoleAdminRoleAdminLayoutMonitorManagementAddMonitorIndexRoute,
     ]),
-    AdminIndexRoute,
-    AdminLoginIndexRoute,
+    AdminRoleAdminIndexRoute,
   ]),
+  AdminRoleStaffRoute.addChildren([
+    AdminRoleStaffRoleStaffLayoutRoute.addChildren([
+      AdminRoleStaffRoleStaffLayoutAnalyticsIndexRoute,
+      AdminRoleStaffRoleStaffLayoutAppointmentsIndexRoute,
+      AdminRoleStaffRoleStaffLayoutCounterSelectionIndexRoute,
+      AdminRoleStaffRoleStaffLayoutDashboardIndexRoute,
+      AdminRoleStaffRoleStaffLayoutQueueingIndexRoute,
+    ]),
+    AdminRoleStaffIndexRoute,
+  ]),
+  AdminLoginIndexRoute,
 ])
 
 /* prettier-ignore-end */

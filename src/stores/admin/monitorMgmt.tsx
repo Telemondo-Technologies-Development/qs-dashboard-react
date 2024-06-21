@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
 type TempStore = {
-  showAddCategoryDialog: boolean;
-  toggleShowAddCategoryDialog: () => void;
+  showAddCounterSheet: boolean;
+  toggleShowAddCounterSheet: () => void;
 };
 
 export const useMonitorManagementStore = create<TempStore>()((set) => ({
-  showAddCategoryDialog: false,
-  toggleShowAddCategoryDialog: () =>
-    set((state) => ({ showAddCategoryDialog: !state.showAddCategoryDialog })),
+  showAddCounterSheet: false,
+  toggleShowAddCounterSheet: () =>
+    set((state) => ({ showAddCounterSheet: !state.showAddCounterSheet })),
 }));

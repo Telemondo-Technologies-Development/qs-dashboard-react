@@ -40,7 +40,12 @@ export default function Login() {
         const userData = response.data.data as UserData
         queryClient.setQueryData<UserData>(['userData'], userData)
         form.reset();
-        navigate({ to: "/admin/dashboard" });
+        if(userData.authorities[0].authority==="ROLE_ADMIN"){
+          navigate({to: "/admin/role-admin/dashboard"})
+        }else{
+          navigate({to: "/admin/role-staff/counter-selection"})
+        }
+        
       } else {
         const errorMessage = response.data.errors[0].message || "Login failed";
         form.setError("username", {

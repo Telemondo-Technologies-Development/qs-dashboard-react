@@ -6,12 +6,8 @@ export const Route = createFileRoute("/admin/login/")({
   component: () => <AdminLogin />,
 });
 
-
 function AdminLogin() {
-  const {
-    data: userData,
-    isLoading,
-  } = useUserData();
+  const { data: userData, isLoading } = useUserData();
 
   if (isLoading) {
     return (
@@ -21,9 +17,12 @@ function AdminLogin() {
     );
   }
   if (userData) {
-    return <Navigate to="/admin/dashboard"/>;
+    if (userData.authorities[0].authority === "ROLE_ADMIN") {
+      return <Navigate to="/admin/role-admin/dashboard" />;
+    }
+    return <Navigate to="/admin/role-staff/dashboard" />;
   }
-  
+
   return (
     <div className="grid h-screen bg-main_primary place-items-center">
       <Login />
