@@ -11,7 +11,7 @@ function AdminLogin() {
 
   if (isLoading) {
     return (
-      <div className="grid h-screen text-3xl place-items-center text-main_primary">
+      <div className="grid h-screen text-3xl place-items-center text-main_primary font-poppins">
         Checking credentials...
       </div>
     );
