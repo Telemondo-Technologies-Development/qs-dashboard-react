@@ -1,51 +1,85 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 
-const pages = [
+const roleAdminPages = [
   {
     name: "Dashboard",
     position: "160px",
-    path: "/admin/dashboard/",
+    path: "/admin/role-admin/dashboard/",
   },
   {
     name: "Appointments",
     position: "205px",
-    path: "/admin/appointments/",
+    path: "/admin/role-admin/appointments/",
   },
   {
     name: "Queueing",
     position: "250px",
-    path: "/admin/queueing/",
+    path: "/admin/role-admin/queueing/",
   },
   {
     name: "Analytics",
     position: "295px",
-    path: "/admin/analytics/",
+    path: "/admin/role-admin/analytics/",
   },
   {
     name: "User Management",
     position: "340px",
-    path: "/admin/management/",
+    path: "/admin/role-admin/user-management/",
   },
   {
     name: "Counter Management",
     position: "385px",
-    path: "/admin/counter-management/",
+    path: "/admin/role-admin/counter-management/",
   },
   {
     name: "Kiosk Management",
     position: "430px",
-    path: "/admin/kiosk-management/",
+    path: "/admin/role-admin/kiosk-management/",
   },
   {
     name: "Monitor Management",
     position: "475px",
-    path: "/admin/monitor-management/",
+    path: "/admin/role-admin/monitor-management/",
   },
 ];
 
-export default function Navbar() {
-  const [translateYPos, setTranslateYPos] = useState(pages[0].position);
+const roleStaffPages = [
+  {
+    name: "Dashboard",
+    position: "160px",
+    path: "/admin/role-staff/dashboard/",
+  },
+  {
+    name: "Appointments",
+    position: "205px",
+    path: "/admin/role-staff/appointments/",
+  },
+  {
+    name: "Queueing",
+    position: "250px",
+    path: "/admin/role-staff/queueing/",
+  },
+  {
+    name: "Analytics",
+    position: "295px",
+    path: "/admin/role-staff/analytics/",
+  },
+  {
+    name: "Counter Selection",
+    position: "340px",
+    path: "/admin/role-staff/counter-selection/",
+  },
+];
+
+type NavbarProps = {
+  role: "admin" | "staff";
+};
+
+export default function Navbar({ role }: NavbarProps) {
+  const [translateYPos, setTranslateYPos] = useState(
+    role === "admin" ? roleAdminPages[0].position : roleStaffPages[0].position
+  );
   return (
     <div className="w-[18vw] relative bg-main_primary h-screen flex flex-col justify-start items-end rounded-tr-2xl rounded-br-2xl">
       <div
@@ -63,27 +97,49 @@ export default function Navbar() {
       </div>
       <div className="w-[85%] flex flex-col items-center">
         <img src="/kiosk-logo.png" className="my-10 rounded-lg size-20" />
-        {pages.map((page, i) => {
-          return (
-            <Link key={i} to={page.path} className="z-10 w-full">
-              <button
-                onClick={() => {
-                  setTranslateYPos(page.position);
-                }}
-                className="flex items-center w-full gap-4 py-3 pl-2"
-              >
-                <img
-                  src={`${translateYPos === page.position ? "/dashboard-logo-darkblue.svg" : "/dashboard-logo-white.svg"}`}
-                />
-                <p
-                  className={`${translateYPos === page.position ? "text-blue-950" : "text-white"} text-sm`}
+        {role === "admin"
+          ? roleAdminPages.map((page, i) => {
+              return (
+                <Link key={i} to={page.path} className="z-10 w-full">
+                  <button
+                    onClick={() => {
+                      setTranslateYPos(page.position);
+                    }}
+                    className="flex items-center w-full gap-4 py-3 pl-2"
+                  >
+                    <img
+                      src={`${translateYPos === page.position ? "/dashboard-logo-darkblue.svg" : "/dashboard-logo-white.svg"}`}
+                    />
+                    <p
+                      className={`${translateYPos === page.position ? "text-blue-950" : "text-white"} text-sm`}
+                    >
+                      {page.name}
+                    </p>
+                  </button>
+                </Link>
+              );
+            })
+          : roleStaffPages.map((page, i) => {
+              return (
+                <Link
+                  onClick={() => {
+                    setTranslateYPos(page.position);
+                  }}
+                  key={i}
+                  to={page.path}
+                  className="z-10 flex items-center w-full gap-4 py-3 pl-2"
                 >
-                  {page.name}
-                </p>
-              </button>
-            </Link>
-          );
-        })}
+                  <img
+                    src={`${translateYPos === page.position ? "/dashboard-logo-darkblue.svg" : "/dashboard-logo-white.svg"}`}
+                  />
+                  <p
+                    className={`${translateYPos === page.position ? "text-blue-950" : "text-white"} text-sm`}
+                  >
+                    {page.name}
+                  </p>
+                </Link>
+              );
+            })}
       </div>
     </div>
   );
