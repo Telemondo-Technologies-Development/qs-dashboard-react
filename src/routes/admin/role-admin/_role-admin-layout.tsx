@@ -19,7 +19,7 @@ function RoleAdminLayout() {
 
   if (isLoading) {
     return (
-      <div className="grid h-screen text-4xl place-items-center font-poppins text-main_primary">
+      <div className="grid h-screen text-3xl place-items-center font-poppins text-main_primary">
         Checking credentials...
       </div>
     );
