@@ -1,12 +1,6 @@
 import axios from "axios";
-import {
-  QueryClient,
-  UseQueryResult,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "@tanstack/react-query";
-import { UserData } from "@/utils/types/auth_types";
+import { useQuery } from "@tanstack/react-query";
+import { UserData } from "@/utils/types/user";
 
 const BASE_URL = "/api/core/auth";
 
@@ -27,24 +21,11 @@ export const login = async (credentials: LoginCredentials) => {
   }
 };
 
-// export function useLoginMutation(queryClient: QueryClient) {
-//   return useMutation({
-//     mutationFn: login,
-//     onSuccess: (response) => {
-//       console.log(response.data.data);
-//       queryClient.setQueryData<UserData>(["userData"], response.data.data);
-//     },
-//   });
-// }
-
-
-
-
 export function useUserData() {
   return useQuery<UserData>({
     queryKey: ["userData"],
     queryFn: async () => {
-      console.log('fetching from useUserData');
+      console.log("fetching from useUserData");
       const { data: userData } = await axios.get(`/api/core/user/profile`);
       return userData.data as UserData;
     },
