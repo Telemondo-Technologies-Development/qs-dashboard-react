@@ -1,5 +1,5 @@
 
-import { UserData } from "@/utils/types/auth_types";
+import { UserData } from "@/utils/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import {
