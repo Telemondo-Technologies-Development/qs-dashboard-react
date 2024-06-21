@@ -32,10 +32,10 @@ function RoleAdminLayout() {
           {showAddCategoryDialog && (
             <div className="absolute top-0 left-0 z-20 w-screen h-screen bg-black/30"></div>
           )}
-          <PreviewDialog />
-          <AddCounterSheet />
           <Navbar role="admin" />
           <div className="relative flex flex-col flex-1">
+            <PreviewDialog />
+            <AddCounterSheet />
             <AdminHeader />
             <Outlet />
             <Footer />
