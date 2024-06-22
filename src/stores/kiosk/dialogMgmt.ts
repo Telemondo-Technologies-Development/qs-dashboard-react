@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import { Counter, Ticket, DialogVariant } from "@/utils/types/kiosk_types";
+import { Ticket, DialogVariant } from "@/utils/types/kiosk_types";
 import { ticketTypes } from "@/utils/variables/kiosk_variables";
+import { CounterType } from "@/utils/types/counterType";
 
 type DialogStore = {
   isOpen: boolean;
@@ -8,8 +9,8 @@ type DialogStore = {
   variant: DialogVariant;
   setVariant: (selectedVariant: DialogVariant) => void;
   resetVariant: () => void;
-  selectedCounter: Counter | undefined;
-  setSelectedCounter: (selectedCounter : Counter) => void;
+  selectedCounter: CounterType | undefined;
+  setSelectedCounter: (selectedCounter : CounterType) => void;
   selectedTicket: Ticket | undefined;
   setSelectedTicket: (selectedTicketID: number) => void;
 };

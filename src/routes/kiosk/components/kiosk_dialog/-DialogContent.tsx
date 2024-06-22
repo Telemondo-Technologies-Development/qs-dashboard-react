@@ -20,7 +20,7 @@ export default function DialogContent({ variant }: DialogContentProps) {
             <div className="flex flex-col flex-1 gap-2">
               <p className="whitespace-nowrap">Chosen Category</p>
               <p className="my-auto font-bold text-black text-basmy-auto e md:text-lg">
-                {selectedCounter!.counterName}
+                {selectedCounter!.name}
               </p>
             </div>
             <div className="w-full h-[1px] sm:h-full sm:w-[1px] bg-main_primary"></div>
