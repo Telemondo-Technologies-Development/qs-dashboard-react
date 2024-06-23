@@ -1,4 +1,3 @@
-
 import { UserData } from "@/utils/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -37,15 +36,10 @@ export default function Login() {
     try {
       const response = await login(values);
       if (response.status === 200) {
-        const userData = response.data.data as UserData
-        queryClient.setQueryData<UserData>(['userData'], userData)
+        const userData = response.data.data as UserData;
+        queryClient.setQueryData<UserData>(["userData"], userData);
         form.reset();
-        if(userData.authorities[0].authority==="ROLE_ADMIN"){
-          navigate({to: "/admin/role-admin/dashboard"})
-        }else{
-          navigate({to: "/admin/role-staff/counter-selection"})
-        }
-        
+        navigate({ to: "/admin/dashboard" });
       } else {
         const errorMessage = response.data.errors[0].message || "Login failed";
         form.setError("username", {
