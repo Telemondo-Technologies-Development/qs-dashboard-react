@@ -8,7 +8,7 @@ export default function DialogContent({ variant }: DialogContentProps) {
   const selectedTicket = useDialogStore((state) => state.selectedTicket);
   const eta = "30";
   const errorMessage = "Check your internet connectivity or try again later.";
-  const ticketNumber = "T-179";
+  const ticketNumber = useDialogStore((state) => state.queueName);
 
   return (
     <div

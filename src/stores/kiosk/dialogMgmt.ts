@@ -13,6 +13,7 @@ type DialogStore = {
   setSelectedCounter: (selectedCounter : CounterType) => void;
   selectedTicket: Ticket | undefined;
   setSelectedTicket: (selectedTicketID: number) => void;
+  queueName: string | undefined;
 };
 
 export const useDialogStore = create<DialogStore>()((set) => ({
@@ -31,4 +32,5 @@ export const useDialogStore = create<DialogStore>()((set) => ({
         if (ticket.ticketID === selectedTicketID) return ticket;
       }),
     }),
+  queueName: undefined,
 }));

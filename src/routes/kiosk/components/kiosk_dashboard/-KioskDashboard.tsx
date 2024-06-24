@@ -11,7 +11,6 @@ import {
 import { useCounterTypes } from "@/api/counterType";
 import { CounterType } from "@/utils/types/counterType";
 
-
 export default function KioskDashboard() {
   const [selectedCounter, setSelectedCounter] = useState<CounterType | undefined>(undefined);
 
@@ -86,7 +85,7 @@ export default function KioskDashboard() {
           onClick={() => {
             resetVariant();
             setSelectedDialogCounter(selectedCounter!);
-            setSelectedDialogTicket(1);
+            setSelectedDialogTicket(0); 
             setShowDialog();
           }}
           className="mobile-s:w-28 mobile-s:text-xs sm:w-36 sm:h-10 sm:text-xs md:w-52 md:text-base md:h-14 lg:text-sm lg:w-52 bg-main_primary"
@@ -99,7 +98,7 @@ export default function KioskDashboard() {
           onClick={() => {
             resetVariant();
             setSelectedDialogCounter(selectedCounter!);
-            setSelectedDialogTicket(2);
+            setSelectedDialogTicket(1); 
             setShowDialog();
           }}
           className="mobile-s:w-28 mobile-s:text-xs sm:w-36 sm:h-10 sm:text-xs md:w-52 md:text-base md:h-14 lg:text-sm lg:w-52 bg-main_primary"
