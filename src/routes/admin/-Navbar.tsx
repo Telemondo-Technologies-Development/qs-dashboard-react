@@ -5,42 +5,42 @@ const roleAdminPages = [
   {
     name: "Dashboard",
     position: "160px",
-    path: "/admin/role-admin/dashboard/",
+    path: "/admin/dashboard/",
   },
   {
     name: "Appointments",
     position: "205px",
-    path: "/admin/role-admin/appointments/",
+    path: "/admin/appointments/",
   },
   {
     name: "Queueing",
     position: "250px",
-    path: "/admin/role-admin/queueing/",
+    path: "/admin/queueing/",
   },
   {
     name: "Analytics",
     position: "295px",
-    path: "/admin/role-admin/analytics/",
+    path: "/admin/analytics/",
   },
   {
     name: "User Management",
     position: "340px",
-    path: "/admin/role-admin/user-management/",
+    path: "/admin/user-management/",
   },
   {
     name: "Counter Management",
     position: "385px",
-    path: "/admin/role-admin/counter-management/",
+    path: "/admin/counter-management/",
   },
   {
     name: "Kiosk Management",
     position: "430px",
-    path: "/admin/role-admin/kiosk-management/",
+    path: "/admin/kiosk-management/",
   },
   {
     name: "Monitor Management",
     position: "475px",
-    path: "/admin/role-admin/monitor-management/",
+    path: "/admin/monitor-management/",
   },
 ];
 
@@ -48,27 +48,27 @@ const roleStaffPages = [
   {
     name: "Dashboard",
     position: "160px",
-    path: "/admin/role-staff/dashboard/",
+    path: "/admin/dashboard/",
   },
   {
     name: "Appointments",
     position: "205px",
-    path: "/admin/role-staff/appointments/",
+    path: "/admin/appointments/",
   },
   {
     name: "Queueing",
     position: "250px",
-    path: "/admin/role-staff/queueing/",
+    path: "/admin/queueing/",
   },
   {
     name: "Analytics",
     position: "295px",
-    path: "/admin/role-staff/analytics/",
+    path: "/admin/analytics/",
   },
   {
     name: "Counter Selection",
     position: "340px",
-    path: "/admin/role-staff/counter-selection/",
+    path: "/admin/counter-selection/",
   },
 ];
 
