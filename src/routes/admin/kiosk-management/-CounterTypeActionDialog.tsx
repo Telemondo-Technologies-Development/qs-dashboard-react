@@ -3,12 +3,9 @@ import { useKioskManagementStore } from "@/stores/admin/kioskMgmt";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -37,11 +34,13 @@ export default function CounterTypeActionDialog() {
     editAbbrev,
   } = useKioskManagementStore();
 
+  // console.log(editName);
+  console.log(counterTypeActionType);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      counterTypeName: counterTypeActionType === "edit" ? editName : "",
-      abbrev: counterTypeActionType === "edit" ? editAbbrev : "",
+      counterTypeName: editName ? editName : "",
+      abbrev: editAbbrev ? editAbbrev : "",
     },
   });
 
@@ -54,15 +53,15 @@ export default function CounterTypeActionDialog() {
       open={openCounterTypeActionDialog}
       onOpenChange={() => toggleCounterTypeActionDialog()}
     >
-      <AlertDialogContent className="max-w-3xl overflow-hidden sm:rounded-xl font-poppins">
+      <AlertDialogContent className="max-w-2xl overflow-hidden sm:rounded-xl font-poppins">
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col"
           >
             <section className="flex flex-1 gap-8 px-10 py-8">
-              <div className="w-1/2 max-h-full border border-main_primary rounded-xl"></div>
-              <div className="flex flex-col w-1/2 h-full">
+              <div className="w-[55%] max-h-full border border-main_primary rounded-xl"></div>
+              <div className="flex flex-col w-[45%] h-full">
                 <p className="text-lg font-semibold">Category Info</p>
                 <div className="flex-1 py-4 space-y-3">
                   <FormField

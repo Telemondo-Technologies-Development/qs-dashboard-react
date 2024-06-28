@@ -64,10 +64,13 @@ const tempCounterTypes: CounterType[] = [
   },
 ];
 
+type counterTypeActionType = "add" | "edit";
+
 type KioskManagementStore = {
   openCounterTypeActionDialog: boolean;
   toggleCounterTypeActionDialog: () => void;
-  counterTypeActionType: "add" | "edit";
+  counterTypeActionType: counterTypeActionType;
+  setCounterTypeActionType: (actionType: counterTypeActionType) => void;
   counterTypes: CounterType[];
   setCounterTypes: (newCategories: CounterType[]) => void;
   editName: string | undefined;
@@ -84,6 +87,10 @@ export const useKioskManagementStore = create<KioskManagementStore>()(
         openCounterTypeActionDialog: !state.openCounterTypeActionDialog,
       })),
     counterTypeActionType: "add",
+    setCounterTypeActionType: (actionType) =>
+      set({
+        counterTypeActionType: actionType,
+      }),
     counterTypes: tempCounterTypes,
     setCounterTypes: (newCounterTypes) =>
       set({ counterTypes: newCounterTypes }),
