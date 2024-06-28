@@ -37,14 +37,11 @@ export default function CounterTypeActionDialog() {
     editAbbrev,
   } = useKioskManagementStore();
 
-  const [name, setName] = useState("");
-  const [abbrev, setAbbrev] = useState("");
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      counterTypeName: counterTypeActionType === "edit" ? name : "",
-      abbrev: counterTypeActionType === "edit" ? abbrev : "",
+      counterTypeName: counterTypeActionType === "edit" ? editName : "",
+      abbrev: counterTypeActionType === "edit" ? editAbbrev : "",
     },
   });
 
@@ -53,7 +50,7 @@ export default function CounterTypeActionDialog() {
   }
 
   function onSubmitEditCounterType(values: z.infer<typeof formSchema>) {
-    console.log('EDIT COUNTER DONE');
+    console.log("EDIT COUNTER DONE");
   }
 
   return (
