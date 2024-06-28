@@ -45,12 +45,8 @@ export default function CounterTypeActionDialog() {
     },
   });
 
-  function onSubmitAddCounterType(values: z.infer<typeof formSchema>) {
-    toggleCounterTypeActionDialog();
-  }
-
-  function onSubmitEditCounterType(values: z.infer<typeof formSchema>) {
-    console.log("EDIT COUNTER DONE");
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    //check countertypeaction type and do stuff based on that
   }
 
   return (
@@ -58,21 +54,17 @@ export default function CounterTypeActionDialog() {
       open={openCounterTypeActionDialog}
       onOpenChange={() => toggleCounterTypeActionDialog()}
     >
-      <AlertDialogContent className="max-w-2xl overflow-hidden sm:rounded-xl font-poppins">
+      <AlertDialogContent className="max-w-3xl overflow-hidden sm:rounded-xl font-poppins">
         <Form {...form}>
           <form
-            onSubmit={
-              counterTypeActionType === "add"
-                ? form.handleSubmit(onSubmitAddCounterType)
-                : form.handleSubmit(onSubmitEditCounterType)
-            }
+            onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col"
           >
-            <section className="flex flex-1 gap-4 px-5 py-6">
-              <div className="w-1/2 h-full border border-main_primary rounded-xl"></div>
-              <div className="flex flex-col w-1/2 h-full p-4">
+            <section className="flex flex-1 gap-8 px-10 py-8">
+              <div className="w-1/2 max-h-full border border-main_primary rounded-xl"></div>
+              <div className="flex flex-col w-1/2 h-full">
                 <p className="text-lg font-semibold">Category Info</p>
-                <div className="flex-1 py-4">
+                <div className="flex-1 py-4 space-y-3">
                   <FormField
                     control={form.control}
                     name="counterTypeName"
@@ -122,13 +114,13 @@ export default function CounterTypeActionDialog() {
               <button
                 type="button"
                 onClick={() => toggleCounterTypeActionDialog()}
-                className="w-1/4 py-2 text-sm rounded-lg text-main_primary bg-main_secondary"
+                className="w-1/4 py-2 text-sm font-medium rounded-md text-main_primary bg-main_secondary"
               >
                 Cancel
               </button>
               <button
                 type="submit"
-                className="w-1/4 py-2 text-sm text-white rounded-lg bg-main_primary"
+                className="w-1/4 py-2 text-sm font-medium text-white rounded-md bg-main_primary"
               >
                 Confirm
               </button>

@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useKioskManagementStore } from "@/stores/admin/kioskMgmt";
 import { useAdminGlobalStore } from "@/stores/admin/adminGlobalStore";
 import RenderBasedOnRole from "../-RenderBasedOnRole";
-import CounterTypeActionDialog from "./-EditCounterTypeDialog";
+import CounterTypeActionDialog from "./-CounterTypeActionDialog";
 
 export const Route = createFileRoute("/admin/kiosk-management/")({
   component: () => <KioskManagement />,
