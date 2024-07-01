@@ -1,5 +1,5 @@
 import { useDialogStore } from "@/stores/kiosk/dialogMgmt";
-import { sendQueueRequest } from "@/api/queue"; // Make sure this path is correct
+import { sendQueueRequest } from "@/api/queue";
 import { Queue } from "@/utils/types/queue";
 
 type DialogButtonsProps = {
@@ -22,7 +22,6 @@ export default function DialogButtons({ variant }: DialogButtonsProps) {
       const queue = response.data.data as Queue;
       console.log(queue)
       setVariant("success");
-      // Assuming setQueueName is a function to update the state with the queue name
       useDialogStore.setState({ queueName: queue.name });
     } catch (error) {
       setVariant("error");
