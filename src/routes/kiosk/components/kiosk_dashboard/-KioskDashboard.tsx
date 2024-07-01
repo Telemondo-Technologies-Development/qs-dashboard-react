@@ -25,8 +25,8 @@ export default function KioskDashboard() {
     console.log(selectedCounter);
   }, [selectedCounter]);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error loading data</div>;
+  if (isLoading) return <div className="grid flex-1 text-2xl font-semibold place-items-center">Loading...</div>;
+  if (error) return <div className="grid flex-1 text-2xl font-semibold place-items-center">Error loading data</div>;
 
   return (
     <div className="flex flex-col items-center justify-center flex-1 bg-white font-poppins text-main_primary mobile-s:mx-5">
