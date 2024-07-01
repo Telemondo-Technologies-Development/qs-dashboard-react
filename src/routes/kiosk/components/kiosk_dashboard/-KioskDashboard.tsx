@@ -8,7 +8,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { useCounterTypes } from "@/api/counterType";
+import { useFetchCounterTypes } from "@/api/counterType";
 import { CounterType } from "@/utils/types/counterType";
 
 export default function KioskDashboard() {
@@ -19,7 +19,7 @@ export default function KioskDashboard() {
   const setSelectedDialogCounter = useDialogStore((state) => state.setSelectedCounter);
   const setSelectedDialogTicket = useDialogStore((state) => state.setSelectedTicket);
 
-  const { data, isLoading, error } = useCounterTypes();
+  const { data, isLoading, error } = useFetchCounterTypes();
 
   useEffect(() => {
     console.log(selectedCounter);
